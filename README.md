@@ -1,4 +1,4 @@
-# Title : World through media
+# The World through media
 
 Team members : Alice Bizeul, Johan Cattin, Laure Font
 
