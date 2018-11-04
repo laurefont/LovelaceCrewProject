@@ -16,9 +16,9 @@ Raising awareness with datascience on this topic can sharpen, if not society's, 
 
 Here are some research questions we would like to address during the project : 
 
-    - What are the distributions of human activity and media coverage worldwide ?
-    - Can media coverage be an indicator of a country's stability or state of activity ? If not, can we extract different parameters that show media coverage bias ?
-    - Do the features of an event give an indication of the level of mediatic attention it will receive ? (type of event, number of deaths in armed conflicts, level of internalization, geographic position) 
+  - What are the distributions of human activity and media coverage worldwide ?
+  - Can media coverage be an indicator of a country's stability or state of activity ? If not, can we extract different parameters that show media coverage bias ?
+  - Do the features of an event give an indication of the level of mediatic attention it will receive ? (type of event, number of deaths in armed conflicts, level of internalization, geographic position) 
 
 
 # Dataset
