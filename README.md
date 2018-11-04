@@ -50,14 +50,17 @@ These information were provided by the corresponding cookbooks :
 # A list of internal milestones up until project milestone 2
 
 <u>Week 1</u>
+
 1. Acquisition of the data, extensive exploration, understanding the structure
 2. Update on the questions we would like to answer
 
 <u>Week 2</u>
+
 3. Extraction of the data of interest and data cleaning
 4. Statistical analysis of the data
 
 <u>Week 3</u>
+
 5. Find methods to determine correlation between the different parameters we are interested in
 
 
