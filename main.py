@@ -5,10 +5,9 @@ import shutil
 
 import pyspark
 from pyspark.sql import *
-from pyspark.sql.functions import unix_timestamp, udf, to_date
+from pyspark.sql.functions import unix_timestamp, udf, to_date, to_timestamp
 from pyspark.sql.types import *
 from datetime import datetime
-
 
 EVENTS_SCHEMA = StructType([
     StructField("GLOBALEVENTID", LongType(), True),
@@ -74,67 +73,6 @@ EVENTS_SCHEMA = StructType([
     StructField("SOURCEURL", StringType(), True)
 ])
 
-
-OUT_DIR = 'output'
-DATA_DIR = 'hdfs:///datasets/gdeltv2'
-
-
-def rmOutDir():
-    shutil.rmtree(OUT_DIR, True)
-    shutil.rmtree("foo", True)
-    shutil.rmtree("bar", True)
-
-
-def save(df):
-    df.write.mode('overwrite').csv('df_save')
-
-
-def main():
-    rmOutDir()
-    spark = SparkSession.builder.getOrCreate()
-    spark.conf.set('spark.sql.session.timeZone', 'UTC')
-    sc = spark.sparkContext
-
-    # exports = spark.read.csv(os.path.join(DATA_DIR, "*.export.CSV"), sep="\t")
-    exports = spark.read.csv(os.path.join(DATA_DIR, "20150530104500.export.CSV"), sep="\t", schema=EVENTS_SCHEMA)
-
-    save(exports)
-
-    print("hello world")
-    return 0
-
-
-GKG_SCHEMA = StructType([
-    StructField("GKGRECORDID", StringType(), True),
-    StructField("DATE", StringType(), True),
-    StructField("SourceCollectionIdentifier", StringType(), True),
-    StructField("SourceCommonName", StringType(), True),
-    StructField("DocumentIdentifier", StringType(), True),
-    StructField("Counts", StringType(), True),
-    StructField("V2Counts", StringType(), True),
-    StructField("Themes", StringType(), True),
-    StructField("V2Themes", StringType(), True),
-    StructField("Locations", StringType(), True),
-    StructField("V2Locations", StringType(), True),
-    StructField("Persons", StringType(), True),
-    StructField("V2Persons", StringType(), True),
-    StructField("Organizations", StringType(), True),
-    StructField("V2Organizations", StringType(), True),
-    StructField("V2Tone", StringType(), True),
-    StructField("Dates", StringType(), True),
-    StructField("GCAM", StringType(), True),
-    StructField("SharingImage", StringType(), True),
-    StructField("RelatedImages", StringType(), True),
-    StructField("SocialImageEmbeds", StringType(), True),
-    StructField("SocialVideoEmbeds", StringType(), True),
-    StructField("Quotations", StringType(), True),
-    StructField("AllNames", StringType(), True),
-    StructField("Amounts", StringType(), True),
-    StructField("TranslationInfo", StringType(), True),
-    StructField("Extras", StringType(), True)
-])
-
-
 MENTIONS_SCHEMA = StructType([
     StructField("GLOBALEVENTID", LongType(), True),
     StructField("EventTimeDate", LongType(), True),
@@ -153,6 +91,51 @@ MENTIONS_SCHEMA = StructType([
     StructField("MentionDocTranslationInfo", StringType(), True),
     StructField("Extras", StringType(), True)
 ])
+
+OUT_DIR = 'output'
+DATA_DIR = 'hdfs:///datasets/gdeltv2'
+
+
+def save(df):
+    df.repartition(1).write.mode('overwrite').csv('df_save')
+
+
+def main():
+    spark = SparkSession.builder.getOrCreate()
+    spark.conf.set('spark.sql.session.timeZone', 'UTC')
+    sc = spark.sparkContext
+
+    events_raw = spark.read.csv(os.path.join(DATA_DIR, "*.export.CSV"), sep="\t", schema=EVENTS_SCHEMA)
+    mentions_raw = spark.read.csv(os.path.join(DATA_DIR, "*.mentions.CSV"), sep="\t", schema=MENTIONS_SCHEMA)
+    # exports = spark.read.csv(os.path.join(DATA_DIR, "20150530104500.export.CSV"), sep="\t", schema=EVENTS_SCHEMA)
+
+    events = events_raw.select('GLOBALEVENTID',
+                               to_date(events_raw.Day_DATE.cast('String'), 'yyyyMMdd').alias('Day_DATE'),
+                               'MonthYear_Date',
+                               'Year_Date',
+                               'FractionDate',
+                               'Actor1CountryCode',
+                               'Actor2CountryCode',
+                               'QuadClass',
+                               'GoldsteinScale',
+                               'AvgTone',
+                               'Actor1Geo_CountryCode',
+                               'Actor2Geo_CountryCode')
+
+    mentions = mentions_raw.select('GLOBALEVENTID',
+                                   to_timestamp(mentions_raw.EventTimeDate.cast('String'), 'yyyyMMddHHmmss').alias(
+                                       'EventTimeDate'),
+                                   to_timestamp(mentions_raw.MentionTimeDate.cast('String'), 'yyyyMMddHHmmss').alias(
+                                       'MentionTimeDate'),
+                                   'MentionType',
+                                   'Confidence')
+
+    save(events)
+    save(mentions)
+
+    print("finished <3")
+    return 0
+
 
 if __name__ == "__main__":
     main()
