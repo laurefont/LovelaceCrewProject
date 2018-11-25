@@ -17,6 +17,6 @@ def loadGDELT(dataset=EVENTS):
 
 def saveDataFrame(df):
     if df is not None:
-        df.repartition(1).write.mode('overwrite').csv('df_save')
+        df.coalesce(1).write.mode('overwrite').csv('df_save')
         return 0
     return 1
