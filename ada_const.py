@@ -2,7 +2,7 @@ from pyspark.sql.types import *
 
 CLUSTER = 0
 LOCAL = 1
-EVENTS = 'events'
+EVENTS = 'export'
 MENTIONS = 'mentions'
 OUT_DIR = 'output'
 EVENTS_SCHEMA = StructType([
