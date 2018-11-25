@@ -32,6 +32,8 @@ def cleanEvents(events_df):
                       'Year_Date',
                       'MonthYear_Date',
                       'FractionDate',
+                      'EventCode',
+                      'EventRootCode',
                       'QuadClass',
                       'GoldsteinScale',
                       'AvgTone',
