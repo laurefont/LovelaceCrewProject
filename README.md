@@ -68,3 +68,64 @@ These information were provided by the corresponding cookbooks :
 
 Google Big Query is another approach in order to fetch the data. What would be the best approach between the Big Query and the cluster to get access to the data ? 
 Can we make use of additional databases (ex : Human Development Index database) if we wish to during the project ? 
+
+# Milestone 2 
+
+## Update on Data Acquisition, Selection & Cleaning - 
+
+The data acquisition was made through the cluster, a few statistical analysis were performed on the whole dataset to verify that we were able to handle such amount of data. The rest of the statistical analysis performed in the Milestone2.ipynb were tested on a small portion of the data, stored locally and provided in the data folder in the repository. These data sets were spread over time, the first and last files of the database were also integrated in this sampled database.
+
+For data selection we decided to narrow down the amount of data by selecting specific data columns in the export.csv and mentions.csv datasets. The GKG.csv files were left aside as they did not convey relevant information to us in addition to being very heavy.
+
+In export files which contains event related information, we selected : 
+- GlobalEventID : only way to connect events stored in export.csv and mentions.csv files
+- DayDate : stores the event occurence day month & year
+- Month_YearDate : stores the month and year of occurence of the event
+- Year_Date : stores the year of occurence of the event 
+- Fraction_Date
+- QuadClass : stores the quad class label of each event, categories are Verbal Cooperation, Material Cooperation, Verbal Conflict, Material Conflict; Kept because gives a event type classification 
+- GoldsteinScale : stores the potential impact that an event will have on a country's stability, is directly related to the type of event;
+- EventRootCode : stores the type of event, kept because allows a categorisation of event by sub-categories
+- ActionGeo_CountryCode : stores the *****
+
+In mentions files which contains news mentions related information, we selected : 
+- GlobalEeventID
+- EventTimeDate : stores date and time of occurence of event in timestamp format
+- MentionTimeDate : stores date and time of occurence of this particular news mention of the event in timestamp format
+- MentionType : Type of source from which the mention comes from (WebSources, Offline Sources ,Archives, Non Written Content); Allows us to assess the origin of our dataset and potentialy better understand results;
+- Confidence : index of confidence in the extraction of informaiont from the news report, the high the index the more we can trust the analysis of the mention that is provided; Allows us to have a better understanding of the dataset;
+- MentionSourceName : name of the news source from which the news mention comes from; Allows us to have a better understanding of the origin of our dataset.
+
+Regarding Data Cleaning, data was already under a statisfying format. The only major cleaning made was on the ActorGeo_CountryCode. Some country index were not under the FIPS_ISO format, which is the format used in the json files that will be used for visualisation of our results on maps. All country index are now in the correct format. 
+
+## Update on Data Statistical Analysis - 
+
+The exploration and analysis performed in the Milestone2.ipynb file followed the following pipeline : 
+- Data Fetching, Selection & Cleaning
+- Analysis of Origin of Data : analysis of sources, sources types and confidence level for a better understanding of the data we will be working with
+- Analysis of Human Activity and Mediatic Activity through TIME 
+- Analysis of Mentions DataBase and definition of Mediatic Coverage and Mediatic Attention
+- Analysis of Human Activity and Mediatic Activity through SPACE (by country)
+- Analysis of Human Activity and Mediatic Activity through EVENT TYPES 
+- Analysis of Human Activity and Mediatic Activity through TIME, SPACE & EVENT TYPES
+
+All of these analysis give insights on the behavior of our data and give the basis of our future analysis which will be centered aroung the dependencies between media attention & coverage and time, space and event types. 
+
+## Update on research questions - 
+
+ - What are the distributions of human activity and media coverage worldwide ?  - This question has already been answered in the statistical anlysis, next step is to provide an interactive visualisation of these activities accross time and space using folium maps. A one month time step will be used to allow the user to scroll through time.
+
+ - Can media coverage be an indicator of a country's stability or state of activity ? If not, can we extract different parameters that show media coverage bias ? - The country's stability can easily be assessed using the Goldstein Scale which provides a numerical indication on the potential impact an event will have on the country's stability. This question will be answered by linking each event in the database to its Goldstein Scale value and the amount of mediatic attention each event received in a fixed period following its occurence. A statistical analysis using correlation coefficient will then be performed and visualisation will be added.
+
+ - Do the features of an event give an indication of the level of mediatic attention it will receive ? (type of event, number of deaths in armed conflicts, level of internalization, geographic position) - We decided to leave the UPCD database aside as it provided data per year, which isn't relevant for the time laps we will be assessing (2 years). No analysis will therefore be performed on the precise number of deaths. However a similar analysis can be performed by extracting a similar information from the occurence of violent events. This informaion is extracted from the EventRootCode index. The biais of media towards the geographic position will be assessed by comparing the level of human activity and level of mediatic attention received by various country's accross the globe. The impact of time on the mediatic attention received by 'major events' accross time can also be assessed by visualizing and assessing the evolution of mediatic attention a events receives accross time. In order words characterize the lifespan on events in the mediatic sphere. 
+
+ - If time allows us to, is this bias evenly distributed accross countries ? in other words, is the bias generated by media in Switzerland different as the one generated by foreign media ? - This step might be slightly too complicated to perform in the time laps we have ahead of us. In addition, this question requires that we grasp the origin of each news report, this information is stored in the URL of the news mention source and most sources are labelled as international sources making it difficult to accuratly grasp the distribution of the origin of our data.
+
+ ## Next steps 
+
+ - Set up interactive maps to visualize accross time and space the evolution of human activity and mediatic coverage based on the data provided by the GDELT 2.0 database.
+ - Run statistical correlation studies between Goldstein Scale and Mediatic Attention using Correlation Coefficients
+ - Set up the visualistion of the distribution of the mediatic attention of events across time, location of the event or type of event. 
+ - Set up the visualisations of the evolution of Human Activity and Mediatic Attention accross time for specific relevant country's (US, Syria, Pakistan and Australia) as well as the evolution of the number of relevant event types during the same time laps( violent vs. pacific events).
+
+
