@@ -24,7 +24,7 @@ def main():
     loc_events = events.dropna(subset='ActionGeo_CountryCode')
     mentions_count = mentions.groupBy('GLOBALEVENTID').count()
     country_count = mentions_count.join(loc_events, 'GLOBALEVENTID').groupBy('ActionGeo_CountryCode').sum(
-        'count').orderBy('sum(count)')
+        'count')
 
     saveDataFrame(country_count)
     return 0
