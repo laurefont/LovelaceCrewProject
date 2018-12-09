@@ -22,7 +22,7 @@ def main():
     country_count = mentions_count.join(events, 'GLOBALEVENTID').groupBy('ActionGeo_CountryCode').sum(
         'count')
 
-    saveDataFrame(country_count)
+    saveDataFrame(country_count, "mentions_per_country")
     return 0
 
 
