@@ -69,7 +69,6 @@ EVENTS_SCHEMA = StructType([
     StructField("SOURCEURL", StringType(), True)
 ])
 
-
 MENTIONS_SCHEMA = StructType([
     StructField("GLOBALEVENTID", LongType(), True),
     StructField("EventTimeDate", LongType(), True),
@@ -231,3 +230,36 @@ FIPS_ISO = dict([('AG', 'DZ'),
                  ('YM', 'YE'),
                  ('ZA', 'ZM'),
                  ('ZI', 'ZW')])
+
+NEWS_SOURCES = ['Web Sources',
+                'Offline Sources',
+                'CORE Archives',
+                'DTIC Archives',
+                'JSTOR Archives',
+                'Non Textual Sources']
+
+EVENT_ROOT_CODES = ['PUBLIC STATEMENT',
+                    'APPEAL',
+                    'INTENT TO COOPERATE',
+                    'CONSULT',
+                    'DIPLOMATIC COOPERATION',
+                    'MATERIAL COOPERATION',
+                    'PROVIDE AID',
+                    'YIELD',
+                    'INVESTIGATE',
+                    'DEMAND',
+                    'DISAPPROVE',
+                    'REJECT',
+                    'THREATEN',
+                    'PROTEST',
+                    'FORCE POSTURE',
+                    'REDUCE RELATIONS',
+                    'COERCE',
+                    'ASSAULT',
+                    'FIGHT',
+                    'MASS VIOLENCE']
+
+QUAD_CLASSES = ['Verbal Cooperation',
+                'Material Cooperation',
+                'Verbal Conflict',
+                'Material Conflict']

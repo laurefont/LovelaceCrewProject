@@ -17,6 +17,6 @@ def loadGDELT(dataset=EVENTS):
 
 def saveDataFrame(df: DataFrame, name):
     if df is not None:
-        df.write.mode('overwrite').csv(os.path.join(OUT_DIR, name))
+        df.write.mode('overwrite').csv(os.path.join(OUT_DIR, name), header='true')
         return 0
     return 1
