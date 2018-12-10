@@ -15,7 +15,7 @@ def loadGDELT(dataset=EVENTS):
     return spark.read.csv(os.path.join(DATA_DIR, "*." + dataset + ".CSV"), sep="\t", schema=current_schema)
 
 
-def saveDataFrame(df: DataFrame, name):
+def saveDataFrame(df, name):
     if df is not None:
         df.write.mode('overwrite').csv(os.path.join(OUT_DIR, name), header='true')
         return 0

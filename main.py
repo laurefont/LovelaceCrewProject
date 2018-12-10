@@ -1,13 +1,11 @@
-from typing import Optional
-
 from ada_const import *
 from ada_context import *
 from ada_imports import *
 from ada_dataIO import *
 from ada_dataCleaner import *
 
-events: DataFrame = None
-mentions: DataFrame = None
+events = None
+mentions = None
 
 
 def main():
@@ -21,6 +19,9 @@ def main():
 
     events = loadGDELT(EVENTS)
     mentions = loadGDELT(MENTIONS)
+
+    events = cleanEvents(events)
+    mentions = cleanMentions(mentions)
 
     start, stop = get_period_mentions(mentions)
     print('Mentions collection started on {} and stoped on {}'.format(start, stop))
@@ -120,11 +121,11 @@ def get_period_events(df_events):
 # Origin of our data #
 ######################
 
-def get_labels(labels) -> list:
+def get_labels(labels):
     return [x for i, x in enumerate(NEWS_SOURCES) if (i + 1) in labels]
 
 
-def get_sources(df_mentions) -> DataFrame:
+def get_sources(df_mentions):
     sources = df_mentions.groupby('MentionType').agg(count('GLOBALEVENTID').alias('Number Mentions')).orderBy(
         'MentionType')
     return sources.select('Number Mentions', 'MentionType')
@@ -135,7 +136,7 @@ def get_sources(df_mentions) -> DataFrame:
 ##########################
 
 # Getting the percentage of mentions for each confidence value
-def get_confidence(df_mentions) -> DataFrame:
+def get_confidence(df_mentions):
     total_mentions = df_mentions.count()
     get_mentions_percent = UserDefinedFunction(lambda x: x / total_mentions, DoubleType())
 
@@ -147,7 +148,7 @@ def get_confidence(df_mentions) -> DataFrame:
     return confidence
 
 
-def get_confidence_distribution(df_mentions, index, label) -> Optional[DataFrame]:
+def get_confidence_distribution(df_mentions, index, label):
     sources_index = df_mentions['MentionType'] == str(index + 1)
     sources = df_mentions[['GLOBALEVENTID', 'MentionType', 'Confidence']][sources_index]
     try:
@@ -165,7 +166,7 @@ def get_goodConfidence(df_mentions):
 # Mentions, Mediatic Coverge and Mediatic Attention #
 #####################################################
 
-def get_delay(df_mentions) -> DataFrame:
+def get_delay(df_mentions):
     # Get delay between event time and mention time
 
     timeFmt = "yyyy-MM-dd'T'HH:mm:ss.SSS"
@@ -174,7 +175,7 @@ def get_delay(df_mentions) -> DataFrame:
     return df_mentions.withColumn("Mention delay", timeDiff)
 
 
-def restric_cov(df_mentions, days_threshold) -> DataFrame:
+def restric_cov(df_mentions, days_threshold):
     # Narrow down mentions to 2 month posterior to event mentions
 
     restric_index = df_mentions['Mention Delay'] <= days_threshold * 24 * 3600
@@ -182,7 +183,7 @@ def restric_cov(df_mentions, days_threshold) -> DataFrame:
     return df_mentions[df_mentions.schema.names][restric_index].sort('GLOBALEVENTID')
 
 
-def get_media_cov(df_mentions) -> DataFrame:
+def get_media_cov(df_mentions):
     # Computing the mediatic coverage of each event in the mentions database
 
     return df_mentions.groupby('GLOBALEVENTID').agg(count('GLOBALEVENTID').alias('Number Mentions'))
@@ -194,7 +195,7 @@ def get_media_cov(df_mentions) -> DataFrame:
 
 
 # WORLDWIDE
-def get_events_worldwide(events_df) -> DataFrame:
+def get_events_worldwide(events_df):
     format_yearmonth = UserDefinedFunction(lambda x: datetime.strptime(x, '%Y%m').strftime('%m-%Y'))
 
     events_worldwide = events_df.groupBy('MonthYear_Date').count().orderBy('MonthYear_Date')
@@ -209,7 +210,7 @@ udf_mention2 = UserDefinedFunction(lambda x: datetime.strptime(x, '%Y%m').strfti
 
 
 # returns the number of mentions for each month, regardless of the countries
-def get_media_coverage_worldwide(mentions_df) -> DataFrame:
+def get_media_coverage_worldwide(mentions_df):
     mentions_Year_Month = mentions_df.select(
         [udf_mention1(column).alias('Year_Month_Mention') if column == 'MentionTimeDate' else column for column in
          mentions_df.columns])
@@ -222,18 +223,18 @@ def get_media_coverage_worldwide(mentions_df) -> DataFrame:
 
 
 # get the 50 events which are the most mentioned
-def largest_events(df_mentions) -> DataFrame:
+def largest_events(df_mentions):
     return df_mentions.groupBy('GLOBALEVENTID').count().orderBy(desc('count')).limit(50)
 
 
 # finds each mention of the most mentioned events
-def largest_events_time(df_mentions) -> DataFrame:
+def largest_events_time(df_mentions):
     return largest_events(df_mentions).select('GLOBALEVENTID').join(mentions.select('GLOBALEVENTID', 'MentionTimeDate'),
                                                                     'GLOBALEVENTID')
 
 
 # finds the number of mentions per month for the most mentioned events (converts to a conveniable time format)
-def largest_events_month_year(df_mentions) -> DataFrame:
+def largest_events_month_year(df_mentions):
     tmp = largest_events_time(df_mentions)
     largest_events_Year_Month = tmp.select(
         [udf_mention1(column).alias('Year_Month_Mention') if column == 'MentionTimeDate' else column for column in
@@ -250,13 +251,13 @@ def largest_events_month_year(df_mentions) -> DataFrame:
 # Geography #
 #############
 
-def get_events_country(df_events) -> DataFrame:
+def get_events_country(df_events):
     return df_events.groupBy('ActionGeo_CountryCode').agg(count('GLOBALEVENTID').alias('human_activity')).orderBy(
         'human_activity')
 
 
 # returns the media coverage for each country over the 2 years
-def get_media_coverage_country(events_df, mentions_df) -> DataFrame:
+def get_media_coverage_country(events_df, mentions_df):
     # mentions per event
     mentions_count = mentions_df.groupBy('GLOBALEVENTID').count()
     mentions_count1 = mentions_count.join(events_df, 'GLOBALEVENTID')
@@ -275,12 +276,12 @@ def get_media_coverage_country(events_df, mentions_df) -> DataFrame:
 # Type of Event Bias #
 ######################
 
-def get_goldstein_desc(df_events) -> DataFrame:
+def get_goldstein_desc(df_events):
     return df_events.select('GoldsteinScale').describe()
 
 
 # Get the number of events reported for each Goldstein ratio value
-def get_activity_byGoldstein(df_events) -> DataFrame:
+def get_activity_byGoldstein(df_events):
     total_event = df_events.count()
     get_events_percent = UserDefinedFunction(lambda x: x / total_event, DoubleType())
 
@@ -293,7 +294,7 @@ def get_activity_byGoldstein(df_events) -> DataFrame:
 
 
 # Get the media coverage and `index` ratio for each event
-def get_cov_index(df_events, df_mentions, index) -> DataFrame:
+def get_cov_index(df_events, df_mentions, index):
     # get_media_cov returns the number of mentions per event
     df_mentions = get_media_cov(df_mentions).alias('mentions')
     df_events = df_events.select(['GLOBALEVENTID', index]).alias('events')
@@ -309,11 +310,11 @@ def get_class(labels):
     return [x for i, x in enumerate(QUAD_CLASSES) if (i + 1) in labels]
 
 
-def get_quad(df_events) -> DataFrame:
+def get_quad(df_events):
     return df_events.groupby('QuadClass').agg(count('GLOBALEVENTID').alias('Number Events')).orderBy('QuadClass')
 
 
-def get_cov_quad_relevant(df_events, df_mentions) -> DataFrame:
+def get_cov_quad_relevant(df_events, df_mentions):
     df_mentions = get_media_cov(df_mentions).alias('mentions')
     df_events = df_events.alias('events')
     cov_quad = df_events.join(df_mentions, df_events['GLOBALEVENTID'] == df_mentions['GLOBALEVENTID'],
@@ -324,7 +325,7 @@ def get_cov_quad_relevant(df_events, df_mentions) -> DataFrame:
 
 
 # returns the proportion of events which are in each category of events
-def get_activity_byType(df_events) -> DataFrame:
+def get_activity_byType(df_events):
     total_event = df_events.count()
     get_events_percent = UserDefinedFunction(lambda x: x / total_event, DoubleType())
 
@@ -343,7 +344,7 @@ def get_activity_byType(df_events) -> DataFrame:
 ###############################################
 
 # gives the average Goldstein ration per month
-def get_Goldstein(df) -> DataFrame:
+def get_Goldstein(df):
     format_yearmonth = UserDefinedFunction(lambda x: datetime.strptime(x, '%Y%m').strftime('%m-%Y'))
     df_Goldstein = df.groupBy('MonthYear_Date').agg(mean('GoldsteinScale').alias('av_Goldstein')).orderBy(
         'MonthYear_Date')
@@ -362,7 +363,7 @@ def get_peacefullevents(df_events):
     return df_events[peace_index]
 
 
-def get_activity_byTypeCountry() -> DataFrame:
+def get_activity_byTypeCountry():
     violent = get_violentevents(events)
     peace = get_peacefullevents(events)
     df_events = peace.union(violent)
