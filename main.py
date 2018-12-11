@@ -31,13 +31,10 @@ def main():
     start, stop = get_period_events(events)
     print('Events recorded in the sample of events started on {} and stoped on {}'.format(start, stop))
 
-    # Clean the time (remove the events before the first event recorded in the mentions)
-    events = get_cleaned_events(events)
-
     # Mentions, Mediatic Coverage and Mediatic Attention
     # CHANGE NUMBER OF DAYS !!!!!!!!
     mentions = restric_cov(get_delay(mentions), 60)
-    #saveDataFrame(get_media_cov(mentions.select('GLOBALEVENTID')), 'get_media_cov')
+    # saveDataFrame(get_media_cov(mentions.select('GLOBALEVENTID')), 'get_media_cov')  # TODO: rerun
 
     # Confidence in our data
     # CHANGE : select the right columns !!!!!!!!!!
@@ -48,13 +45,13 @@ def main():
     # CHANGE : select the right columns !!!!!!!!!!
     saveDataFrame(get_sources(mentions.select('MentionType','GLOBALEVENTID')), 'get_sources')
     # NEW !!!!!!!!!!!
-    saveDataFrame(get_sources_names(mentions.select('MentionSourceName')), 'get_sources_names')
+    # saveDataFrame(get_sources_names(mentions.select('MentionSourceName')), 'get_sources_names')  # TODO: run
 
     # milestone 3
     # renamed media coverage to media attention !!!!!!!!
-    saveDataFrame(get_events_media_attention(), 'get_events_media_attention') # TODO: faire marcher
+    # saveDataFrame(get_events_media_attention(), 'get_events_media_attention')  # TODO: faire marcher, important
     # NEW !!!!!!!
-    saveDataFrame(get_events_per_country(events.select('MonthYear_Date','ActionGeo_CountryCode','GLOBALEVENTID')), 'get_events_country_time')
+    # saveDataFrame(get_events_per_country(events.select('MonthYear_Date','ActionGeo_CountryCode','GLOBALEVENTID')), 'get_events_country_time')  # TODO: run
 
 
     # Time
@@ -63,19 +60,19 @@ def main():
     saveDataFrame(get_media_coverage_worldwide(mentions.select('MentionTimeDate')), 'get_media_coverage_worldwide')
 
     saveDataFrame(largest_events(mentions), 'largest_events')
-    saveDataFrame(largest_events_month_year(mentions), 'largest_events_month_year') #TODO: voir par quel fuck ca fait tt planter
+    # saveDataFrame(largest_events_month_year(mentions), 'largest_events_month_year') #TODO: voir par quel fuck ca fait tt planter
 
     # Geography TODO: bat les couilles en vrai
     # saveDataFrame(get_events_country(events), 'get_events_country') TODO: uncomment and watch out for black magic
     # saveDataFrame(get_media_coverage_country(events, mentions), 'get_media_coverage_country') TODO: same
 
     # Type of Event Bias
-    # saveDataFrame(get_goldstein_desc(events), 'get_goldstein_desc')
-    # saveDataFrame(get_activity_byGoldstein(events), 'get_activity_byGoldstein')
-    # saveDataFrame(get_cov_index(events, mentions, 'GoldsteinScale'), 'get_cov_index')
-    # saveDataFrame(get_quad(events), 'get_quad')
-    # saveDataFrame(get_cov_quad_relevant(events, mentions), 'get_cov_quad_relevant')
-    # saveDataFrame(get_activity_byType(events), 'get_activity_byType')
+    saveDataFrame(get_goldstein_desc(events), 'get_goldstein_desc')
+    saveDataFrame(get_activity_byGoldstein(events), 'get_activity_byGoldstein')
+    saveDataFrame(get_cov_index(events, mentions, 'GoldsteinScale'), 'get_cov_index')
+    saveDataFrame(get_quad(events), 'get_quad')
+    saveDataFrame(get_cov_quad_relevant(events, mentions), 'get_cov_quad_relevant')
+    saveDataFrame(get_activity_byType(events), 'get_activity_byType')
 
     # Let's now concentrate on some countries....
 
