@@ -38,12 +38,12 @@ def main():
 
     # Confidence in our data
     # CHANGE : select the right columns !!!!!!!!!!
-    saveDataFrame(get_confidence(mentions.select('Confidence','GLOBALEVENTID')), 'get_confidence')
+    # saveDataFrame(get_confidence(mentions.select('Confidence','GLOBALEVENTID')), 'get_confidence')  # TODO: DONE
     mentions = get_goodConfidence(mentions)
 
     # Origin of our data
     # CHANGE : select the right columns !!!!!!!!!!
-    saveDataFrame(get_sources(mentions.select('MentionType','GLOBALEVENTID')), 'get_sources')
+    # saveDataFrame(get_sources(mentions.select('MentionType','GLOBALEVENTID')), 'get_sources')  # TODO: DONE
     # NEW !!!!!!!!!!!
     # saveDataFrame(get_sources_names(mentions.select('MentionSourceName')), 'get_sources_names')  # TODO: run
 
@@ -56,7 +56,7 @@ def main():
 
     # Time
     # CHANGE : select the right columns !!!!!!!!!!
-    saveDataFrame(get_events_worldwide(events('MonthYear_Date')), 'get_events_worldwide')
+    saveDataFrame(get_events_worldwide(events.select('MonthYear_Date')), 'get_events_worldwide')
     saveDataFrame(get_media_coverage_worldwide(mentions.select('MentionTimeDate')), 'get_media_coverage_worldwide')
 
     saveDataFrame(largest_events(mentions), 'largest_events')
