@@ -65,8 +65,8 @@ def main():
     saveDataFrame(largest_events(mentions), 'largest_events')
     saveDataFrame(largest_events_month_year(mentions), 'largest_events_month_year') #TODO: voir par quel fuck ca fait tt planter
 
-    # Geography
-    # saveDataFrame(get_events_country(events), 'get_events_country') TODO: uncomment and watch out for black magic    Important a choper
+    # Geography TODO: bat les couilles en vrai
+    # saveDataFrame(get_events_country(events), 'get_events_country') TODO: uncomment and watch out for black magic
     # saveDataFrame(get_media_coverage_country(events, mentions), 'get_media_coverage_country') TODO: same
 
     # Type of Event Bias
@@ -133,18 +133,6 @@ def get_period_events(df_events):
     return start[0], stop[0]
 
 
-# NEW !!!!!!!!!
-######################
-# Clean time #
-######################
-
-def get_cleaned_events(events_df):
-    # first mention recording
-    first_record = datetime.strptime('20150218', '%Y%m%d').strftime('%Y-%m-%d')
-    new_events = events_df.filter(events_df['date'] >= first_record)
-
-    return new_events
-
 ######################
 # Origin of our data #
 ######################
@@ -163,7 +151,6 @@ def get_sources_names(df_mentions):
     # returns the 80 most prominent media sources
 
     return df_mentions.groupBy('MentionSourceName').count().orderBy(desc('count')).limit(80)
-
 
 
 ##########################
