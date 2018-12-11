@@ -53,7 +53,7 @@ def main():
     # saveDataFrame(get_media_cov(mentions), 'get_media_cov')
 
     # milestone 3
-    saveDataFrame(get_events_media_coverage(), 'get_events_media_coverage')
+    saveDataFrame(get_events_media_coverage(), 'get_events_media_coverage') # TODO: faire marcher et renommer en media attention ou autre
 
     # Time
     # saveDataFrame(get_events_worldwide(events), 'get_events_worldwide')
@@ -62,7 +62,7 @@ def main():
     # saveDataFrame(largest_events_month_year(mentions), 'largest_events_month_year') TODO: voir par quel fuck ca fait tt planter
 
     # Geography
-    # saveDataFrame(get_events_country(events), 'get_events_country') TODO: uncomment and watch out for black magic
+    # saveDataFrame(get_events_country(events), 'get_events_country') TODO: uncomment and watch out for black magic    Important a choper
     # saveDataFrame(get_media_coverage_country(events, mentions), 'get_media_coverage_country') TODO: same
 
     # Type of Event Bias
