@@ -23,45 +23,52 @@ def main():
     events = cleanEvents(events)
     mentions = cleanMentions(mentions)
 
-    start, stop = get_period_mentions(mentions)
-    print('Mentions collection started on {} and stoped on {}'.format(start, stop))
+    # start, stop = get_period_mentions(mentions)
+    # print('Mentions collection started on {} and stoped on {}'.format(start, stop))
 
-    start, stop = get_period_events_mentions(mentions)
-    print('Events mentioned in the sample of mentions took place from {} to {}'.format(start, stop))
+    # start, stop = get_period_events_mentions(mentions)
+    # print('Events mentioned in the sample of mentions took place from {} to {}'.format(start, stop))
 
-    start, stop = get_period_events(events)
-    print('Events recorded in the sample of events started on {} and stoped on {}'.format(start, stop))
+    # start, stop = get_period_events(events)
+    # print('Events recorded in the sample of events started on {} and stoped on {}'.format(start, stop))
 
     # Origin of our data
-    saveDataFrame(get_sources(mentions), 'get_sources')
+    # saveDataFrame(get_sources(mentions), 'get_sources')
 
     # Confidence in our data
-    saveDataFrame(get_confidence(mentions), 'get_confidence')
+    # saveDataFrame(get_confidence(mentions), 'get_confidence')
+    '''
     for index, label in enumerate(NEWS_SOURCES):
-        saveDataFrame(get_confidence_distribution(mentions, index, label), 'get_confidence_distribution_' + str(label))
+        ret = get_confidence_distribution(mentions, index, label)
+        try:
+            if not ret.rdd.isEmpty():
+                saveDataFrame(ret, 'get_confidence_distribution_' + str(label))
+        except:
+            assert True
+    '''
     mentions = get_goodConfidence(mentions)
 
     # Mentions, Mediatic Coverge and Mediatic Attention
     mentions = restric_cov(get_delay(mentions), 120)
-    saveDataFrame(get_media_cov(mentions), 'get_media_cov')
+    # saveDataFrame(get_media_cov(mentions), 'get_media_cov')
 
     # Time
-    saveDataFrame(get_events_worldwide(events), 'get_events_worldwide')
-    saveDataFrame(get_media_coverage_worldwide(mentions), 'get_media_coverage_worldwide')
-    saveDataFrame(largest_events(mentions), 'largest_events')
-    saveDataFrame(largest_events_month_year(mentions), 'largest_events_month_year')
+    # saveDataFrame(get_events_worldwide(events), 'get_events_worldwide')
+    # saveDataFrame(get_media_coverage_worldwide(mentions), 'get_media_coverage_worldwide')
+    # saveDataFrame(largest_events(mentions), 'largest_events')
+    # saveDataFrame(largest_events_month_year(mentions), 'largest_events_month_year') TODO: voir par quel fuck ca fait tt planter
 
     # Geography
-    saveDataFrame(get_events_country(events), 'get_events_country')
-    saveDataFrame(get_media_coverage_country(events, mentions), 'get_media_coverage_country')
+    # saveDataFrame(get_events_country(events), 'get_events_country') TODO: uncomment and watch out for black magic
+    # saveDataFrame(get_media_coverage_country(events, mentions), 'get_media_coverage_country') TODO: same
 
     # Type of Event Bias
-    saveDataFrame(get_goldstein_desc(events), 'get_goldstein_desc')
-    saveDataFrame(get_activity_byGoldstein(events), 'get_activity_byGoldstein')
-    saveDataFrame(get_cov_index(events, mentions, 'GoldsteinScale'), 'get_cov_index')
-    saveDataFrame(get_quad(events), 'get_quad')
-    saveDataFrame(get_cov_quad_relevant(events, mentions), 'get_cov_quad_relevant')
-    saveDataFrame(get_activity_byType(events), 'get_activity_byType')
+    # saveDataFrame(get_goldstein_desc(events), 'get_goldstein_desc')
+    # saveDataFrame(get_activity_byGoldstein(events), 'get_activity_byGoldstein')
+    # saveDataFrame(get_cov_index(events, mentions, 'GoldsteinScale'), 'get_cov_index')
+    # saveDataFrame(get_quad(events), 'get_quad')
+    # saveDataFrame(get_cov_quad_relevant(events, mentions), 'get_cov_quad_relevant')
+    # saveDataFrame(get_activity_byType(events), 'get_activity_byType')
 
     # Let's now concentrate on some countries....
     events_US = events.filter(events['ActionGeo_CountryCode'] == 'US')
@@ -86,6 +93,9 @@ def main():
     saveDataFrame(get_Goldstein(events_AS), 'Goldstein_AS')
     saveDataFrame(get_activity_byTypeCountry(), 'get_activity_byTypeCountry')
 
+    # milestone 3
+    saveDataFrame(get_events_media_coverage(), 'get_events_media_coverage')
+
     return 0
 
 
@@ -95,7 +105,7 @@ def main():
 
 # When were the mentions collected ?
 def get_period_mentions(df_mentions):
-    start = df_mentions.select('MentionTimeDate').orderBy('MentionTimeDate').head()
+    start = df_mentions.where(col("MentionTimeDate").isNotNull()).select('MentionTimeDate').orderBy('MentionTimeDate').head()
     stop = df_mentions.select('MentionTimeDate').orderBy(desc('MentionTimeDate')).head()
 
     return start[0], stop[0]
@@ -103,7 +113,7 @@ def get_period_mentions(df_mentions):
 
 # When did the events recorded in the sample of mentions take place?
 def get_period_events_mentions(df_mentions):
-    start = df_mentions.select('EventTimeDate').orderBy('EventTimeDate').head()
+    start = df_mentions.where(col("EventTimeDate").isNotNull()).select('EventTimeDate').orderBy('EventTimeDate').head()
     stop = df_mentions.select('EventTimeDate').orderBy(desc('EventTimeDate')).head()
 
     return start[0], stop[0]
@@ -111,7 +121,7 @@ def get_period_events_mentions(df_mentions):
 
 # When did the recorded events take place?
 def get_period_events(df_events):
-    start = df_events.select('date').orderBy('date').head()
+    start = df_events.where(col("date").isNotNull()).select('date').orderBy('date').head()
     stop = df_events.select('date').orderBy(desc('date')).head()
 
     return start[0], stop[0]
@@ -152,7 +162,10 @@ def get_confidence_distribution(df_mentions, index, label):
     sources_index = df_mentions['MentionType'] == str(index + 1)
     sources = df_mentions[['GLOBALEVENTID', 'MentionType', 'Confidence']][sources_index]
     try:
-        return get_confidence(sources)
+        if sources.rdd.isEmpty():
+            return None
+        else:
+            return get_confidence(sources)
     except:
         return None
 
@@ -378,6 +391,40 @@ def get_activity_byTypeCountry():
          in count_type.columns])
 
     return count_type
+
+
+###############
+# milestone 3 #
+###############
+
+def get_events_media_coverage():
+    df = mentions.select('GLOBALEVENTID', 'EventTimeDate', 'MentionTimeDate')
+    df.createTempView('mentions')
+    query = '''
+        WITH simple_events AS (
+            SELECT DISTINCT GLOBALEVENTID, EventTimeDate
+            FROM mentions
+        ),
+        mentions_total AS (
+            SELECT e.GLOBALEVENTID, count(m.GLOBALEVENTID) AS mentions_pool
+            FROM simple_events e, mentions m
+            WHERE months_between(m.MentionTimeDate, e.EventTimeDate) BETWEEN 0 AND 2
+            GROUP BY e.GLOBALEVENTID
+        ),
+        specific_mentions AS (
+            SELECT e.GLOBALEVENTID, count(m.GLOBALEVENTID) AS mentions_count
+            FROM simple_events e
+            INNER JOIN mentions m
+                ON e.GLOBALEVENTID = m.GLOBALEVENTID
+            WHERE months_between(m.MentionTimeDate, e.EventTimeDate) BETWEEN 0 AND 2
+            GROUP BY e.GLOBALEVENTID
+        )
+        SELECT t.GLOBALEVENTID, mentions_count, mentions_pool, mentions_count / mentions_pool AS coverage
+        FROM mentions_total t
+        INNER JOIN specific_mentions s
+            ON t.GLOBALEVENTID = s.GLOBALEVENTID
+    '''
+    return spark.sql(query)
 
 
 if __name__ == "__main__":
