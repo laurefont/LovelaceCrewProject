@@ -52,6 +52,9 @@ def main():
     mentions = restric_cov(get_delay(mentions), 120)
     # saveDataFrame(get_media_cov(mentions), 'get_media_cov')
 
+    # milestone 3
+    saveDataFrame(get_events_media_coverage(), 'get_events_media_coverage')
+
     # Time
     # saveDataFrame(get_events_worldwide(events), 'get_events_worldwide')
     # saveDataFrame(get_media_coverage_worldwide(mentions), 'get_media_coverage_worldwide')
@@ -92,9 +95,6 @@ def main():
     saveDataFrame(get_Goldstein(events_PK), 'Goldstein_PK')
     saveDataFrame(get_Goldstein(events_AS), 'Goldstein_AS')
     saveDataFrame(get_activity_byTypeCountry(), 'get_activity_byTypeCountry')
-
-    # milestone 3
-    saveDataFrame(get_events_media_coverage(), 'get_events_media_coverage')
 
     return 0
 
