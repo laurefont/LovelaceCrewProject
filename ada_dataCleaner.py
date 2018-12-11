@@ -25,6 +25,12 @@ def cleanEvents(events_df):
                            round(events_df.GoldsteinScale, 2).alias('GoldsteinScale'),
                            'AvgTone',
                            isoCodes(functions.col('ActionGeo_CountryCode')).alias('ActionGeo_CountryCode'))
+    # first mention recording
+    first_record = datetime.strptime('20150218', '%Y%m%d')
+    # last event considered to have 2 months coverage for every event
+    last_considered_events = datetime.strptime('20170921', '%Y%m%d')
+    tmp = tmp.filter(tmp['date'] >= first_record)
+    tmp = tmp.filter(tmp['date'] <= last_considered_events)
     return tmp.select('GLOBALEVENTID',
                       'date',
                       dayofmonth(tmp.date).alias('Day_Date'),

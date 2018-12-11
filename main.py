@@ -23,14 +23,14 @@ def main():
     events = cleanEvents(events)
     mentions = cleanMentions(mentions)
 
-    # start, stop = get_period_mentions(mentions)
-    # print('Mentions collection started on {} and stoped on {}'.format(start, stop))
+    start, stop = get_period_mentions(mentions)
+    print('Mentions collection started on {} and stoped on {}'.format(start, stop))
 
-    # start, stop = get_period_events_mentions(mentions)
-    # print('Events mentioned in the sample of mentions took place from {} to {}'.format(start, stop))
+    start, stop = get_period_events_mentions(mentions)
+    print('Events mentioned in the sample of mentions took place from {} to {}'.format(start, stop))
 
-    # start, stop = get_period_events(events)
-    # print('Events recorded in the sample of events started on {} and stoped on {}'.format(start, stop))
+    start, stop = get_period_events(events)
+    print('Events recorded in the sample of events started on {} and stoped on {}'.format(start, stop))
 
     # Origin of our data
     # saveDataFrame(get_sources(mentions), 'get_sources')
@@ -74,25 +74,27 @@ def main():
     # saveDataFrame(get_activity_byType(events), 'get_activity_byType')
 
     # Let's now concentrate on some countries....
+
     events_US = events.filter(events['ActionGeo_CountryCode'] == 'US')
-    events_SY = events.filter(events['ActionGeo_CountryCode'] == 'SY')
-    events_PK = events.filter(events['ActionGeo_CountryCode'] == 'PK')
-    events_AS = events.filter(events['ActionGeo_CountryCode'] == 'AS')
-    mentions_US = events_US.join(mentions, 'GLOBALEVENTID')
-    mentions_SY = events_SY.join(mentions, 'GLOBALEVENTID')
-    mentions_PK = events_PK.join(mentions, 'GLOBALEVENTID')
-    mentions_AS = events_AS.join(mentions, 'GLOBALEVENTID')
     saveDataFrame(get_events_worldwide(events_US), 'events_US_time')
-    saveDataFrame(get_events_worldwide(events_SY), 'events_SY_time')
-    saveDataFrame(get_events_worldwide(events_PK), 'events_PK_time')
-    saveDataFrame(get_events_worldwide(events_AS), 'events_AS_time')
-    saveDataFrame(get_media_coverage_worldwide(mentions_US), 'mentions_US_time')
-    saveDataFrame(get_media_coverage_worldwide(mentions_SY), 'mentions_SY_time')
-    saveDataFrame(get_media_coverage_worldwide(mentions_PK), 'mentions_PK_time')
-    saveDataFrame(get_media_coverage_worldwide(mentions_AS), 'mentions_AS_time')
     saveDataFrame(get_Goldstein(events_US), 'Goldstein_US')
+    mentions_US = events_US.join(mentions, 'GLOBALEVENTID')
+    saveDataFrame(get_media_coverage_worldwide(mentions_US), 'mentions_US_time')
+
+    events_SY = events.filter(events['ActionGeo_CountryCode'] == 'SY')
+    mentions_SY = events_SY.join(mentions, 'GLOBALEVENTID')
+    saveDataFrame(get_events_worldwide(events_SY), 'events_SY_time')
+    saveDataFrame(get_media_coverage_worldwide(mentions_SY), 'mentions_SY_time')
     saveDataFrame(get_Goldstein(events_SY), 'Goldstein_SY')
+    events_PK = events.filter(events['ActionGeo_CountryCode'] == 'PK')
+    mentions_PK = events_PK.join(mentions, 'GLOBALEVENTID')
+    saveDataFrame(get_events_worldwide(events_PK), 'events_PK_time')
+    saveDataFrame(get_media_coverage_worldwide(mentions_PK), 'mentions_PK_time')
     saveDataFrame(get_Goldstein(events_PK), 'Goldstein_PK')
+    events_AS = events.filter(events['ActionGeo_CountryCode'] == 'AS')
+    mentions_AS = events_AS.join(mentions, 'GLOBALEVENTID')
+    saveDataFrame(get_events_worldwide(events_AS), 'events_AS_time')
+    saveDataFrame(get_media_coverage_worldwide(mentions_AS), 'mentions_AS_time')
     saveDataFrame(get_Goldstein(events_AS), 'Goldstein_AS')
     saveDataFrame(get_activity_byTypeCountry(), 'get_activity_byTypeCountry')
 

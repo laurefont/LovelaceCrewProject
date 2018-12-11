@@ -12,7 +12,11 @@ def loadGDELT(dataset=EVENTS):
         current_schema = MENTIONS_SCHEMA
     else:
         return None
-    return spark.read.csv(os.path.join(DATA_DIR, "*." + dataset + ".CSV"), sep="\t", schema=current_schema)
+    df = spark.read.csv(os.path.join(DATA_DIR, "*." + dataset + ".CSV"), sep="\t", schema=current_schema)
+    parquetName = dataset + ".parquet"
+    df.write.mode('overwrite').parquet(parquetName)
+    df = spark.read.parquet(parquetName)
+    return df
 
 
 def saveDataFrame(df, name):
