@@ -59,20 +59,22 @@ def main():
     saveDataFrame(get_events_worldwide(events.select('MonthYear_Date')), 'get_events_worldwide')
     saveDataFrame(get_media_coverage_worldwide(mentions.select('MentionTimeDate')), 'get_media_coverage_worldwide')
 
-    saveDataFrame(largest_events(mentions), 'largest_events')
-    # saveDataFrame(largest_events_month_year(mentions), 'largest_events_month_year') #TODO: voir par quel fuck ca fait tt planter
+    # saveDataFrame(largest_events(mentions), 'largest_events')
+    saveDataFrame(largest_events_month_year(mentions), 'largest_events_month_year') #TODO: voir par quel fuck ca fait tt planter
 
     # Geography TODO: bat les couilles en vrai
     # saveDataFrame(get_events_country(events), 'get_events_country') TODO: uncomment and watch out for black magic
     # saveDataFrame(get_media_coverage_country(events, mentions), 'get_media_coverage_country') TODO: same
 
     # Type of Event Bias
-    saveDataFrame(get_goldstein_desc(events), 'get_goldstein_desc')
-    saveDataFrame(get_activity_byGoldstein(events), 'get_activity_byGoldstein')
+    # BYE BYE
+    #saveDataFrame(get_goldstein_desc(events), 'get_goldstein_desc')
+    # CHANGE : : select the right columns !!!!!!!!!!
+    saveDataFrame(get_activity_byGoldstein(events.select('GoldsteinScale', 'GLOBALEVENTID')), 'get_activity_byGoldstein')
     saveDataFrame(get_cov_index(events, mentions, 'GoldsteinScale'), 'get_cov_index')
-    saveDataFrame(get_quad(events), 'get_quad')
-    saveDataFrame(get_cov_quad_relevant(events, mentions), 'get_cov_quad_relevant')
-    saveDataFrame(get_activity_byType(events), 'get_activity_byType')
+    saveDataFrame(get_quad(events.select('QuadClass', 'GLOBALEVENTID')), 'get_quad')
+    saveDataFrame(get_cov_quad_relevant(events.select('GLOBALEVENTID', 'QuadClass'), mentions.select('GLOBALEVENTID')), 'get_cov_quad_relevant')
+    saveDataFrame(get_activity_byType(events.select('EventRootCode', 'GLOBALEVENTID')), 'get_activity_byType')
 
     # Let's now concentrate on some countries....
 
@@ -232,15 +234,19 @@ def get_media_coverage_worldwide(mentions_df):
     return mentions_month_year
 
 
-# get the 50 events which are the most mentioned
+# get the 20 events which are the most mentioned
 def largest_events(df_mentions):
-    return df_mentions.groupBy('GLOBALEVENTID').count().orderBy(desc('count')).limit(50)
+    return df_mentions.groupBy('GLOBALEVENTID').count().orderBy(desc('count')).limit(20)
 
 
 # finds each mention of the most mentioned events
 def largest_events_time(df_mentions):
-    return largest_events(df_mentions).select('GLOBALEVENTID').join(mentions.select('GLOBALEVENTID', 'MentionTimeDate'),
-                                                                    'GLOBALEVENTID')
+    largest20_events = largest_events(df_mentions)
+    ids_list = largest20_events.select('GLOBALEVENTID').collect()
+    ids_array = [int(i.GLOBALEVENTID) for i in ids_list]
+    mentions_filtered = mentions.select('GLOBALEVENTID', 'MentionTimeDate').filter(col('GLOBALEVENTID').isin(ids_array))
+
+    return largest20_events.select('GLOBALEVENTID').join(mentions_filtered, 'GLOBALEVENTID')                                                             'GLOBALEVENTID')
 
 
 # finds the number of mentions per month for the most mentioned events (converts to a conveniable time format)
@@ -306,7 +312,7 @@ def get_activity_byGoldstein(df_events):
 # Get the media coverage and `index` ratio for each event
 def get_cov_index(df_events, df_mentions, index):
     # get_media_cov returns the number of mentions per event
-    df_mentions = get_media_cov(df_mentions).alias('mentions')
+    df_mentions = get_media_cov(df_mentions.select('GLOBALEVENTID')).alias('mentions')
     df_events = df_events.select(['GLOBALEVENTID', index]).alias('events')
     cov_index = df_events.join(df_mentions, df_events['GLOBALEVENTID'] == df_mentions['GLOBALEVENTID'],
                                how='left').select(['events.' + index, 'mentions.*'])
@@ -437,5 +443,3 @@ def get_events_media_attention():
 
 if __name__ == "__main__":
     main()
-
-
