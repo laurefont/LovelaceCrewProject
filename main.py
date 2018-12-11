@@ -11,7 +11,6 @@ mentions = None
 def main():
     """
     Computes and saves all dataframes needed for our statistics
-
     :return: 0 if successful
     """
     global events
@@ -23,43 +22,48 @@ def main():
     events = cleanEvents(events)
     mentions = cleanMentions(mentions)
 
-    # start, stop = get_period_mentions(mentions)
-    # print('Mentions collection started on {} and stoped on {}'.format(start, stop))
+    start, stop = get_period_mentions(mentions)
+    print('Mentions collection started on {} and stoped on {}'.format(start, stop))
 
-    # start, stop = get_period_events_mentions(mentions)
-    # print('Events mentioned in the sample of mentions took place from {} to {}'.format(start, stop))
+    start, stop = get_period_events_mentions(mentions)
+    print('Events mentioned in the sample of mentions took place from {} to {}'.format(start, stop))
 
-    # start, stop = get_period_events(events)
-    # print('Events recorded in the sample of events started on {} and stoped on {}'.format(start, stop))
+    start, stop = get_period_events(events)
+    print('Events recorded in the sample of events started on {} and stoped on {}'.format(start, stop))
 
-    # Origin of our data
-    # saveDataFrame(get_sources(mentions), 'get_sources')
+    # Clean the time (remove the events before the first event recorded in the mentions)
+    events = get_cleaned_events(events)
+
+    # Mentions, Mediatic Coverage and Mediatic Attention
+    # CHANGE NUMBER OF DAYS !!!!!!!!
+    mentions = restric_cov(get_delay(mentions), 60)
+    #saveDataFrame(get_media_cov(mentions.select('GLOBALEVENTID')), 'get_media_cov')
 
     # Confidence in our data
-    # saveDataFrame(get_confidence(mentions), 'get_confidence')
-    '''
-    for index, label in enumerate(NEWS_SOURCES):
-        ret = get_confidence_distribution(mentions, index, label)
-        try:
-            if not ret.rdd.isEmpty():
-                saveDataFrame(ret, 'get_confidence_distribution_' + str(label))
-        except:
-            assert True
-    '''
+    # CHANGE : select the right columns !!!!!!!!!!
+    saveDataFrame(get_confidence(mentions.select('Confidence','GLOBALEVENTID')), 'get_confidence')
     mentions = get_goodConfidence(mentions)
 
-    # Mentions, Mediatic Coverge and Mediatic Attention
-    mentions = restric_cov(get_delay(mentions), 120)
-    # saveDataFrame(get_media_cov(mentions), 'get_media_cov')
+    # Origin of our data
+    # CHANGE : select the right columns !!!!!!!!!!
+    saveDataFrame(get_sources(mentions.select('MentionType','GLOBALEVENTID')), 'get_sources')
+    # NEW !!!!!!!!!!!
+    saveDataFrame(get_sources_names(mentions.select('MentionSourceName')), 'get_sources_names')
 
     # milestone 3
-    saveDataFrame(get_events_media_coverage(), 'get_events_media_coverage') # TODO: faire marcher et renommer en media attention ou autre
+    # renamed media coverage to media attention !!!!!!!!
+    saveDataFrame(get_events_media_attention(), 'get_events_media_attention') # TODO: faire marcher
+    # NEW !!!!!!!
+    saveDataFrame(get_events_per_country(events.select('MonthYear_Date','ActionGeo_CountryCode','GLOBALEVENTID')), 'get_events_country_time')
+
 
     # Time
-    # saveDataFrame(get_events_worldwide(events), 'get_events_worldwide')
-    # saveDataFrame(get_media_coverage_worldwide(mentions), 'get_media_coverage_worldwide')
-    # saveDataFrame(largest_events(mentions), 'largest_events')
-    # saveDataFrame(largest_events_month_year(mentions), 'largest_events_month_year') TODO: voir par quel fuck ca fait tt planter
+    # CHANGE : select the right columns !!!!!!!!!!
+    saveDataFrame(get_events_worldwide(events('MonthYear_Date')), 'get_events_worldwide')
+    saveDataFrame(get_media_coverage_worldwide(mentions.select('MentionTimeDate')), 'get_media_coverage_worldwide')
+
+    saveDataFrame(largest_events(mentions), 'largest_events')
+    saveDataFrame(largest_events_month_year(mentions), 'largest_events_month_year') #TODO: voir par quel fuck ca fait tt planter
 
     # Geography
     # saveDataFrame(get_events_country(events), 'get_events_country') TODO: uncomment and watch out for black magic    Important a choper
@@ -127,6 +131,18 @@ def get_period_events(df_events):
     return start[0], stop[0]
 
 
+# NEW !!!!!!!!!
+######################
+# Clean time #
+######################
+
+def get_cleaned_events(events_df):
+    # first mention recording
+    first_record = datetime.strptime('20150218', '%Y%m%d').strftime('%Y-%m-%d')
+    new_events = events_df.filter(events_df['date'] >= first_record)
+
+    return new_events
+
 ######################
 # Origin of our data #
 ######################
@@ -139,6 +155,13 @@ def get_sources(df_mentions):
     sources = df_mentions.groupby('MentionType').agg(count('GLOBALEVENTID').alias('Number Mentions')).orderBy(
         'MentionType')
     return sources.select('Number Mentions', 'MentionType')
+
+# NEW !!!!!!!!!!!
+def get_sources_names(df_mentions):
+    # returns the 80 most prominent media sources
+
+    return df_mentions.groupBy('MentionSourceName').count().orderBy(desc('count')).limit(80)
+
 
 
 ##########################
@@ -156,18 +179,6 @@ def get_confidence(df_mentions):
                                     if column == 'Number Mentions' else column for column in confidence.columns])
 
     return confidence
-
-
-def get_confidence_distribution(df_mentions, index, label):
-    sources_index = df_mentions['MentionType'] == str(index + 1)
-    sources = df_mentions[['GLOBALEVENTID', 'MentionType', 'Confidence']][sources_index]
-    try:
-        if sources.rdd.isEmpty():
-            return None
-        else:
-            return get_confidence(sources)
-    except:
-        return None
 
 
 def get_goodConfidence(df_mentions):
@@ -397,7 +408,18 @@ def get_activity_byTypeCountry():
 # milestone 3 #
 ###############
 
-def get_events_media_coverage():
+# ADDED THIS FUNCTION !!!!!!!
+# number of events for each country for each month
+def get_events_per_country(events_df):
+
+    events_worldwide = events_df.groupBy('MonthYear_Date', 'ActionGeo_CountryCode').agg(
+        count('GLOBALEVENTID').alias('Number_Events')).orderBy(['MonthYear_Date', 'Number_Events'],
+                                                                   ascending=[True, True])
+    return events_worldwide.select(
+        [udf_mention2(column).alias('Month_Year') if column == 'MonthYear_Date' else column for column in events_worldwide.columns])
+
+
+def get_events_media_attention():
     df = mentions.select('GLOBALEVENTID', 'EventTimeDate', 'MentionTimeDate')
     df.createTempView('mentions')
     query = '''
@@ -429,3 +451,5 @@ def get_events_media_coverage():
 
 if __name__ == "__main__":
     main()
+
+
