@@ -246,7 +246,7 @@ def largest_events_time(df_mentions):
     ids_array = [int(i.GLOBALEVENTID) for i in ids_list]
     mentions_filtered = mentions.select('GLOBALEVENTID', 'MentionTimeDate').filter(col('GLOBALEVENTID').isin(ids_array))
 
-    return largest20_events.select('GLOBALEVENTID').join(mentions_filtered, 'GLOBALEVENTID')                                                             'GLOBALEVENTID')
+    return largest20_events.select('GLOBALEVENTID').join(mentions_filtered, 'GLOBALEVENTID')
 
 
 # finds the number of mentions per month for the most mentioned events (converts to a conveniable time format)
