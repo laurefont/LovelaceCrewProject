@@ -40,11 +40,12 @@ def main():
 
     # Confidence in our data
     # CHANGE : select the right columns !!!!!!!!!!
-    saveDataFrame(get_confidence(mentions.select('Confidence', 'GLOBALEVENTID')), 'get_confidence')  #TODO: debug empty column
+    # saveDataFrame(get_confidence(mentions.select('Confidence', 'GLOBALEVENTID')), 'get_confidence')  #TODO: DONE
     mentions = get_goodConfidence(mentions)
     mentions.write.mode('overwrite').parquet("mentions.parquet")
     mentions = spark.read.parquet("mentions.parquet")
     print("mentions to parquet done")
+
 
     # Origin of our data
     # CHANGE : select the right columns !!!!!!!!!!
@@ -64,7 +65,7 @@ def main():
     # saveDataFrame(get_media_coverage_worldwide(mentions.select('MentionTimeDate')), 'get_media_coverage_worldwide')  #TODO: DONE
 
     # saveDataFrame(largest_events(mentions), 'largest_events')  #TODO: DONE
-    # saveDataFrame(largest_events_month_year(mentions), 'largest_events_month_year')  #TODO: voir par quel fuck ca fait tt planter
+    saveDataFrame(largest_events_day_month_year(mentions), 'largest_events_day_month_year')  #TODO: voir par quel fuck ca fait tt planter
 
     # Geography TODO: bat les couilles en vrai
     # saveDataFrame(get_events_country(events), 'get_events_country') TODO: uncomment and watch out for black magic
@@ -264,9 +265,7 @@ def largest_events_time(df_mentions):
     largest20_events = largest_events(df_mentions)
     ids_list = largest20_events.select('GLOBALEVENTID').collect()
     ids_array = [int(i.GLOBALEVENTID) for i in ids_list]
-    mentions_filtered = mentions.select('GLOBALEVENTID', 'MentionTimeDate').filter(col('GLOBALEVENTID').isin(ids_array))
-
-    return largest20_events.select('GLOBALEVENTID').join(mentions_filtered, 'GLOBALEVENTID')
+    return mentions.select('GLOBALEVENTID', 'MentionTimeDate').filter(col('GLOBALEVENTID').isin(ids_array))
 
 
 # finds the number of mentions per month for the most mentioned events (converts to a conveniable time format)
@@ -280,6 +279,24 @@ def largest_events_month_year(df_mentions):
         'Year_Month_Mention')
     return largest_events_year_month.select(
         [udf_mention2(column).alias('Month_Year_Mention') if column == 'Year_Month_Mention' else column for column in
+         largest_events_year_month.columns])
+
+
+udf_largest1 = UserDefinedFunction(lambda x: x.strftime('%Y%m%d'))
+udf_largest2 = UserDefinedFunction(lambda x: datetime.strptime(x, '%Y%m%d').strftime('%d-%m-%Y'))
+
+
+# finds the number of mentions per day for the most mentioned events (converts to a conveniable time format)
+def largest_events_day_month_year(df_mentions):
+    tmp = largest_events_time(df_mentions)
+    largest_events_Year_Month = tmp.select(
+        [udf_largest1(column).alias('Day_Mention') if column == 'MentionTimeDate' else column for column in
+         tmp.columns])
+    largest_events_year_month = largest_events_Year_Month.groupBy('Day_Mention',
+                                                                  'GLOBALEVENTID').count().orderBy(
+        'Day_Mention')
+    return largest_events_year_month.select(
+        [udf_largest2(column).alias('Day_Month_Year_Mention') if column == 'Day_Mention' else column for column in
          largest_events_year_month.columns])
 
 
@@ -431,9 +448,48 @@ def get_events_per_country(events_df):
         [udf_mention2(column).alias('Month_Year') if column == 'MonthYear_Date' else column for column in
          events_worldwide.columns])
     '''
+    events_df.write.mode('overwrite').parquet("events_df.parquet")
+    events_df = spark.read.parquet("events_df.parquet")
+    print("events_df to parquet done")
     ret = events_df.groupBy('MonthYear_Date', 'ActionGeo_CountryCode').count()
 
-    return ret.withColumn('ActionGeo_CountryCode', isoCodes(ret.ActionGeo_CountryCode))
+    # return ret.withColumn('ActionGeo_CountryCode', isoCodes(ret.ActionGeo_CountryCode))
+    return ret
+
+
+# returns the number of mentions for each country for each of the biggest sources (from 4 different countries)
+def mentions_biggest_sources(df_mentions, df_events, selected_sources):
+    mentions_selected_sources = df_mentions.filter(col('MentionSourceName').isin(selected_sources))
+    mentions_selected_sources = mentions_selected_sources.join(df_events, 'GLOBALEVENTID')
+    return mentions_selected_sources.groupBy('MentionSourceName', 'ActionGeo_CountryCode').agg(
+        count('GLOBALEVENTID').alias('Number_Mentions')).orderBy('MentionSourceName', 'ActionGeo_CountryCode')
+
+
+# returns the media coverage for each country for each month
+def get_media_cov_per_country(df_events, df_mentions):
+    df = df_mentions.join(df_events, 'GLOBALEVENTID').select('GLOBALEVENTID', 'ActionGeo_CountryCode',
+                                                             'MentionTimeDate')
+    mentions_Year_Month = df.select(
+        [udf_mention1(column).alias('Year_Month_Mention') if column == 'MentionTimeDate' else column for column in
+         df.columns])
+    mentions_year_month = mentions_Year_Month.groupBy('Year_Month_Mention', 'ActionGeo_CountryCode').count().orderBy(
+        'Year_Month_Mention')
+    mentions_month_year = mentions_year_month.select(
+        [udf_mention2(column).alias('Month_Year_Mention') if column == 'Year_Month_Mention' else column for column in
+         mentions_year_month.columns])
+    return mentions_month_year
+
+
+def get_activity_byTypeCountry_time(df_events):
+    violent = get_violentevents(df_events)
+    peace = get_peacefullevents(df_events)
+    df = peace.union(violent)
+    df_new = df.groupby('ActionGeo_CountryCode', 'MonthYear_Date', 'EventRootCode').agg(
+        count('GLOBALEVENTID').alias('Number of Events')).orderBy('ActionGeo_CountryCode', 'MonthYear_Date',
+                                                                  'EventRootCode')
+    return df_new.select(
+        [udf_mention2(column).alias('Month_Year') if column == 'MonthYear_Date' else column for column in
+         df_new.columns])
 
 
 def get_events_media_attention():
