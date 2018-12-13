@@ -61,6 +61,8 @@ def main():
     # saveDataFrame(get_events_media_attention(), 'get_events_media_attention')  # TODO: faire marcher, important
     # NEW !!!!!!!
     saveDataFrame(get_events_per_country(events.select('GLOBALEVENTID', 'MonthYear_Date', 'ActionGeo_CountryCode')), 'get_events_country_time')  # TODO: DONE 4M
+    saveDataFrame(get_activity_byTypeCountry_time(events), 'get_activity_byTypeCountry_time')
+    saveDataFrame(get_media_cov_per_country(events, mentions), 'get_media_cov_per_country')
 
     # Time
     # CHANGE : select the right columns !!!!!!!!!!
@@ -515,6 +517,9 @@ def get_activity_byTypeCountry_time(df_events):
 
 def get_events_media_attention():
     df = mentions.select('GLOBALEVENTID', 'EventTimeDate', 'MentionTimeDate')
+    df.write.mode('overwrite').parquet("df.parquet")
+    df = spark.read.parquet("df.parquet")
+    print("df to parquet done")
     df.createTempView('mentions')
     query = '''
         WITH simple_events AS (
