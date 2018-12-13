@@ -40,24 +40,27 @@ def main():
 
     # Confidence in our data
     # CHANGE : select the right columns !!!!!!!!!!
-    # saveDataFrame(get_confidence(mentions.select('Confidence', 'GLOBALEVENTID')), 'get_confidence')  #TODO: DONE
+    saveDataFrame(get_confidence(mentions.select('Confidence', 'GLOBALEVENTID')), 'get_confidence')  #TODO: DONE 4M
     mentions = get_goodConfidence(mentions)
     mentions.write.mode('overwrite').parquet("mentions.parquet")
     mentions = spark.read.parquet("mentions.parquet")
     print("mentions to parquet done")
+    events.write.mode('overwrite').parquet("events.parquet")
+    events = spark.read.parquet("events.parquet")
+    print("events to parquet done")
 
 
     # Origin of our data
     # CHANGE : select the right columns !!!!!!!!!!
     # saveDataFrame(get_sources(mentions.select('MentionType','GLOBALEVENTID')), 'get_sources')  #TODO: DONE
     # NEW !!!!!!!!!!!
-    # saveDataFrame(get_sources_names(mentions.select('MentionSourceName')), 'get_sources_names')  # TODO: DONE
+    saveDataFrame(get_sources_names(mentions.select('MentionSourceName')), 'get_sources_names')  # TODO: DONE 4M
 
     # milestone 3
     # renamed media coverage to media attention !!!!!!!!
     # saveDataFrame(get_events_media_attention(), 'get_events_media_attention')  # TODO: faire marcher, important
     # NEW !!!!!!!
-    saveDataFrame(get_events_per_country(events.select('GLOBALEVENTID', 'MonthYear_Date', 'ActionGeo_CountryCode')), 'get_events_country_time')  # TODO: run
+    saveDataFrame(get_events_per_country(events.select('GLOBALEVENTID', 'MonthYear_Date', 'ActionGeo_CountryCode')), 'get_events_country_time')  # TODO: DONE 4M
 
     # Time
     # CHANGE : select the right columns !!!!!!!!!!
@@ -65,7 +68,7 @@ def main():
     # saveDataFrame(get_media_coverage_worldwide(mentions.select('MentionTimeDate')), 'get_media_coverage_worldwide')  #TODO: DONE
 
     # saveDataFrame(largest_events(mentions), 'largest_events')  #TODO: DONE
-    saveDataFrame(largest_events_day_month_year(mentions), 'largest_events_day_month_year')  #TODO: voir par quel fuck ca fait tt planter
+    saveDataFrame(largest_events_day_month_year(mentions), 'largest_events_day_month_year')  #TODO: DONE 4M
 
     # Geography TODO: bat les couilles en vrai
     # saveDataFrame(get_events_country(events), 'get_events_country') TODO: uncomment and watch out for black magic
@@ -82,20 +85,37 @@ def main():
     # saveDataFrame(get_activity_byType(events.select('EventRootCode', 'GLOBALEVENTID')), 'get_activity_byType')  #TODO: debug empty column
 
     # Let's now concentrate on some countries....
-    print("begin worldwide")
-    saveDataFrame(get_events_worldwide(events.select('MonthYear_Date')), 'get_events_worldwide')
-    print("saved worldwide")
     arg = events.select('MonthYear_Date', 'ActionGeo_CountryCode')
-    events_US = arg.filter(arg['ActionGeo_CountryCode'] == 'US').select('MonthYear_Date')
-    events_US.write.mode('overwrite').parquet("arg.parquet")
-    events_US = spark.read.parquet("arg.parquet")
-    print("US events filtered and stored")
-    events_US_time = get_events_worldwide(events_US)
-    saveDataFrame(events_US_time, 'events_US_time')
 
-    if True:
-        return 0
+    # events_US = arg.filter(arg['ActionGeo_CountryCode'] == 'US').select('MonthYear_Date')
+    # events_US.write.mode('overwrite').parquet("arg.parquet")
+    # events_US = spark.read.parquet("arg.parquet")
+    # print("US events filtered and stored")
+    # events_US_time = get_events_worldwide(events_US)
+    # saveDataFrame(events_US_time, 'events_US_time')  # TODO: DONE 4M
 
+    events_SY = arg.filter(arg['ActionGeo_CountryCode'] == 'SY').select('MonthYear_Date')
+    events_SY.write.mode('overwrite').parquet("arg.parquet")
+    events_SY = spark.read.parquet("arg.parquet")
+    print("SY events filtered and stored")
+    events_SY_time = get_events_worldwide(events_SY)
+    saveDataFrame(events_SY_time, 'events_SY_time')
+
+    events_PK = arg.filter(arg['ActionGeo_CountryCode'] == 'PK').select('MonthYear_Date')
+    events_PK.write.mode('overwrite').parquet("arg.parquet")
+    events_PK = spark.read.parquet("arg.parquet")
+    print("PK events filtered and stored")
+    events_PK_time = get_events_worldwide(events_PK)
+    saveDataFrame(events_PK_time, 'events_PK_time')
+
+    events_AS = arg.filter(arg['ActionGeo_CountryCode'] == 'AS').select('MonthYear_Date')
+    events_AS.write.mode('overwrite').parquet("arg.parquet")
+    events_AS = spark.read.parquet("arg.parquet")
+    print("AS events filtered and stored")
+    events_AS_time = get_events_worldwide(events_AS)
+    saveDataFrame(events_AS_time, 'events_AS_time')
+
+    '''
     saveDataFrame(get_Goldstein(events_US.select('MonthYear_Date', 'GoldsteinScale')), 'Goldstein_US')
     mentions_US = events_US.join(mentions, 'GLOBALEVENTID')
     saveDataFrame(get_media_coverage_worldwide(mentions_US), 'mentions_US_time')
@@ -118,6 +138,7 @@ def main():
     saveDataFrame(get_media_coverage_worldwide(mentions_AS), 'mentions_AS_time')
     saveDataFrame(get_Goldstein(events_AS.select('MonthYear_Date', 'GoldsteinScale')), 'Goldstein_AS')
     saveDataFrame(get_activity_byTypeCountry(), 'get_activity_byTypeCountry')
+    '''
 
     return 0
 

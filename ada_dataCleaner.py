@@ -43,7 +43,7 @@ def cleanEvents(events_df):
 
     ## SMALL DATASET ##
     first_record = datetime.strptime('20160101', '%Y%m%d')
-    last_considered_events = datetime.strptime('20160501', '%Y%m%d')
+    last_considered_events = datetime.strptime('20161231', '%Y%m%d')
     ###################
 
     tmp = tmp.filter(tmp['date'] >= first_record)
@@ -69,7 +69,7 @@ def cleanMentions(mentions_df):
 
     ## SMALL DATASET ##
     first_record = datetime.strptime('20160101', '%Y%m%d')
-    last_considered_events = datetime.strptime('20160501', '%Y%m%d')
+    last_considered_events = datetime.strptime('20161231', '%Y%m%d')
     ###################
 
     tmp = mentions_df.select('GLOBALEVENTID',
