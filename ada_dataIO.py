@@ -13,9 +13,6 @@ def loadGDELT(dataset=EVENTS):
     else:
         return None
     df = spark.read.csv(os.path.join(DATA_DIR, "*." + dataset + ".CSV"), sep="\t", schema=current_schema)
-    parquetName = dataset + ".parquet"
-    df.write.mode('overwrite').parquet(parquetName)
-    df = spark.read.parquet(parquetName)
     return df
 
 
