@@ -36,7 +36,7 @@ def main():
     # Mentions, Mediatic Coverage and Mediatic Attention
     # CHANGE NUMBER OF DAYS !!!!!!!!
     mentions = restric_cov(get_delay(mentions), 60)
-    # saveDataFrame(get_media_cov(mentions.select('GLOBALEVENTID')), 'get_media_cov')  # TODO: rerun
+    saveDataFrame(get_media_cov(mentions.select('GLOBALEVENTID')), 'get_media_cov')  # TODO: rerun
 
     # Confidence in our data
     # CHANGE : select the right columns !!!!!!!!!!
@@ -52,7 +52,7 @@ def main():
 
     # Origin of our data
     # CHANGE : select the right columns !!!!!!!!!!
-    # saveDataFrame(get_sources(mentions.select('MentionType','GLOBALEVENTID')), 'get_sources')  #TODO: DONE
+    saveDataFrame(get_sources(mentions.select('MentionType','GLOBALEVENTID')), 'get_sources')  #TODO: DONE
     # NEW !!!!!!!!!!!
     saveDataFrame(get_sources_names(mentions.select('MentionSourceName')), 'get_sources_names')  # TODO: DONE 4M
 
@@ -64,14 +64,14 @@ def main():
 
     # Time
     # CHANGE : select the right columns !!!!!!!!!!
-    # saveDataFrame(get_events_worldwide(events.select('MonthYear_Date')), 'get_events_worldwide')  #TODO: DONE
-    # saveDataFrame(get_media_coverage_worldwide(mentions.select('MentionTimeDate')), 'get_media_coverage_worldwide')  #TODO: DONE
+    saveDataFrame(get_events_worldwide(events.select('MonthYear_Date')), 'get_events_worldwide')  #TODO: DONE
+    saveDataFrame(get_media_coverage_worldwide(mentions.select('MentionTimeDate')), 'get_media_coverage_worldwide')  #TODO: DONE
 
-    # saveDataFrame(largest_events(mentions), 'largest_events')  #TODO: DONE
+    saveDataFrame(largest_events(mentions), 'largest_events')  #TODO: DONE
     saveDataFrame(largest_events_day_month_year(mentions), 'largest_events_day_month_year')  #TODO: DONE 4M
 
-    # Geography TODO: bat les couilles en vrai
-    # saveDataFrame(get_events_country(events), 'get_events_country') TODO: uncomment and watch out for black magic
+    # Geography TODO: bat les couilles en vrai -> get_events_per_country() -> get_media_cov_per_country()
+    # saveDataFrame(get_events_country(events), 'get_events_country') TODO: doomed
     # saveDataFrame(get_media_coverage_country(events, mentions), 'get_media_coverage_country') TODO: same
 
     # Type of Event Bias
@@ -87,12 +87,12 @@ def main():
     # Let's now concentrate on some countries....
     arg = events.select('MonthYear_Date', 'ActionGeo_CountryCode')
 
-    # events_US = arg.filter(arg['ActionGeo_CountryCode'] == 'US').select('MonthYear_Date')
-    # events_US.write.mode('overwrite').parquet("arg.parquet")
-    # events_US = spark.read.parquet("arg.parquet")
-    # print("US events filtered and stored")
-    # events_US_time = get_events_worldwide(events_US)
-    # saveDataFrame(events_US_time, 'events_US_time')  # TODO: DONE 4M
+    events_US = arg.filter(arg['ActionGeo_CountryCode'] == 'US').select('MonthYear_Date')
+    events_US.write.mode('overwrite').parquet("arg.parquet")
+    events_US = spark.read.parquet("arg.parquet")
+    print("US events filtered and stored")
+    events_US_time = get_events_worldwide(events_US)
+    saveDataFrame(events_US_time, 'events_US_time')  # TODO: DONE 4M
 
     events_SY = arg.filter(arg['ActionGeo_CountryCode'] == 'SY').select('MonthYear_Date')
     events_SY.write.mode('overwrite').parquet("arg.parquet")

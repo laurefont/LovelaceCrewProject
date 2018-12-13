@@ -37,13 +37,13 @@ def cleanEvents(events_df):
     #   )
 
     # first mention recording
-    # first_record = datetime.strptime('20150218', '%Y%m%d')
+    first_record = datetime.strptime('20150218', '%Y%m%d')
     # last event considered to have 2 months coverage for every event
-    # last_considered_events = datetime.strptime('20170921', '%Y%m%d')
+    last_considered_events = datetime.strptime('20170921', '%Y%m%d')
 
     ## SMALL DATASET ##
-    first_record = datetime.strptime('20160101', '%Y%m%d')
-    last_considered_events = datetime.strptime('20161231', '%Y%m%d')
+    # first_record = datetime.strptime('20160101', '%Y%m%d')
+    # last_considered_events = datetime.strptime('20161231', '%Y%m%d')
     ###################
 
     tmp = tmp.filter(tmp['date'] >= first_record)
