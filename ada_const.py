@@ -88,14 +88,14 @@ MENTIONS_SCHEMA = StructType([
     StructField("Extras", StringType(), True)
 ])
 
-FIPS_ISO = dict([('AG', 'DZ'),
-                 ('AQ', 'AS'),
-                 ('AN', 'AD'),
+FIPS_ISO = dict([('AG', 'DZ'),  # Algerie
+                 ('AQ', 'AS'),  # Samoa americain
+                 ('AN', 'AD'),  # Andorre
                  ('AV', 'AI'),
                  ('AY', 'AQ'),
                  ('AC', 'AG'),
                  ('AA', 'AW'),
-                 ('AS', 'AU'),
+                 ('AS', 'AU'),  # Australie
                  ('AU', 'AT'),
                  ('AJ', 'AZ'),
                  ('BF', 'BS'),
@@ -117,7 +117,7 @@ FIPS_ISO = dict([('AG', 'DZ'),
                  ('CT', 'CF'),
                  ('CD', 'TD'),
                  ('CI', 'CL'),
-                 ('CH', 'CN'),
+                 ('CH', 'CN'),  # Chine
                  ('KT', 'CX'),
                  ('CK', 'CC'),
                  ('CN', 'KM'),
@@ -137,6 +137,8 @@ FIPS_ISO = dict([('AG', 'DZ'),
                  ('FS', 'TF'),
                  ('GB', 'GA'),
                  ('GA', 'GM'),
+                 ('GG', 'GE'),
+                 ('GM', 'DE'),  # Allemagne
                  ('GJ', 'GD'),
                  ('GQ', 'GU'),
                  ('GK', 'GG'),
@@ -210,8 +212,8 @@ FIPS_ISO = dict([('AG', 'DZ'),
                  ('NS', 'SR'),
                  ('SV', 'SJ'),
                  ('WZ', 'SZ'),
-                 ('SW', 'SE'),
-                 ('SZ', 'CH'),
+                 ('SW', 'SE'),  # Suede
+                 ('SZ', 'CH'),  # Suisse
                  ('TI', 'TJ'),
                  ('TT', 'TL'),
                  ('TO', 'TG'),
@@ -222,7 +224,7 @@ FIPS_ISO = dict([('AG', 'DZ'),
                  ('TU', 'TR'),
                  ('TX', 'TM'),
                  ('TK', 'TC'),
-                 ('UK', 'GB'),
+                 ('UK', 'GB'),  # Royaume-Uni
                  ('NH', 'VU'),
                  ('VI', 'VG'),
                  ('VQ', 'VI'),

@@ -4,7 +4,9 @@ mentions.parquet/
 spark-warehouse/
 .ipynb_checkpoints/
 .idea/
+*.parquet/
 .DS_Store
 **/.DS_Store
 **/_SUCCESS
 **/*.crc
+**/.*.crc
