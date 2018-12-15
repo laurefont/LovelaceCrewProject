@@ -4,6 +4,7 @@ from ada_imports import *
 from ada_dataIO import *
 from ada_dataCleaner import *
 
+events = None
 mentions = None
 
 
@@ -12,17 +13,107 @@ def main():
     Computes and saves all dataframes needed for our statistics
     :return: 0 if successful
     """
+    global events
     global mentions
 
+    events = loadGDELT(EVENTS)
     mentions = loadGDELT(MENTIONS)
 
+    events = cleanEvents(events)
     mentions = cleanMentions(mentions)
 
     # Confidence in our data and 2month delay
     mentions = restric_cov(get_delay(mentions), 60)
     mentions = get_goodConfidence(mentions)
-    saveDataFrame(get_events_media_attention(), 'get_events_media_attention')
+    mentions.write.mode('overwrite').parquet("mentions.parquet")
+    mentions = spark.read.parquet("mentions.parquet")
+    print("mentions to parquet done")
+    events.write.mode('overwrite').parquet("events.parquet")
+    events = spark.read.parquet("events.parquet")
+    print("events to parquet done")
+
+    biggest_sources_selection = list(
+        ['france24.com', 'washingtonpost.com', 'theguardian.com', 'thejakartapost.com', 'thehindu.com',
+         'dailytelegraph.com.au', 'gulfnews.com', 'japantimes.co.jp', 'chinadaily.com.cn', 'timesofisrael.com',
+         'rt.com', 'kenyastar.com'])
+    saveDataFrame(mentions_biggest_sources1(mentions.select('MentionSourceName', 'GLOBALEVENTID'),
+                                            events.select('GLOBALEVENTID', 'ActionGeo_CountryCode'),
+                                            biggest_sources_selection), 'countries_mentions_biggest_sources1')
+
+    saveDataFrame(mentions_biggest_sources2(mentions.select('MentionSourceName', 'GLOBALEVENTID'),
+                                            events.select('GLOBALEVENTID', 'ActionGeo_CountryCode'),
+                                            biggest_sources_selection), 'mentions_biggest_sources2')
+    saveDataFrame(get_activity_byGoldstein(events.select('GLOBALEVENTID', 'GoldsteinScale')),
+                  'get_activity_byGoldstein')
+    saveDataFrame(
+        Goldstein_mediaCov(mentions.select('GLOBALEVENTID'), events.select('GLOBALEVENTID', 'GoldsteinScale')),
+        'Goldstein_mediaCov')
+
     print("<3")
+
+
+def get_media_cov(df_mentions, df_events):
+    """
+    :return: mentions number and Goldstein score for each event
+    :type df_mentions: DataFrame
+    :type df_events: DataFrame
+    :rtype: DataFrame
+    """
+    # Computing the mediatic coverage of each event in the mentions database
+    goldstein = df_events.select('GLOBALEVENTID', 'GoldsteinScale')
+    ret = df_mentions.groupby('GLOBALEVENTID').count()
+    return ret.join(goldstein, 'GLOBALEVENTID')
+
+
+def Goldstein_mediaCov(df_mentions, df_events):
+    media_coverage = get_media_cov(df_mentions)
+    df = media_coverage.join(df_events, 'GLOBALEVENTID').select('GoldsteinScale', 'Number Mentions')
+    return df.groupBy('GoldsteinScale').agg(avg('Number mentions').alias('Average media coverage per event'))
+
+
+def get_activity_byGoldstein(df_events):
+    total_event = df_events.count()
+    get_events_percent = UserDefinedFunction(lambda x: x / total_event, DoubleType())
+
+    goldstein = df_events.groupby('GoldsteinScale').agg(count('GLOBALEVENTID').alias('Number Events')).orderBy(
+        'GoldsteinScale')
+
+    return goldstein.select(
+        [get_events_percent(column).alias('Fraction of Events') if column == 'Number Events' else column for column in
+         goldstein.columns])
+
+
+def mentions_biggest_sources2(df_mentions, df_events, selected_sources):
+    mentions_selected_sources = df_mentions.filter(col('MentionSourceName').isin(selected_sources))
+    # for each sources finds the IDs of the events it mentiones
+    mentions_selected_sources = mentions_selected_sources.groupBy('MentionSourceName', 'GLOBALEVENTID').count().select(
+        'MentionSourceName', 'GLOBALEVENTID')
+    # find the country for each of these events
+    mentions_selected_sources = mentions_selected_sources.join(df_events, 'GLOBALEVENTID').select('MentionSourceName',
+                                                                                                  'GLOBALEVENTID',
+                                                                                                  'ActionGeo_CountryCode')
+    # finds the overall number of events for each country in the 2 years
+    events_country = df_events.groupBy('ActionGeo_CountryCode').agg(
+        count('GLOBALEVENTID').alias('Number_events_country'))
+    # for each country mentioned in the sources, associates its number of events in the 2 years
+    sources_events = mentions_selected_sources.join(events_country, 'ActionGeo_CountryCode').select('MentionSourceName',
+                                                                                                    'GLOBALEVENTID',
+                                                                                                    'ActionGeo_CountryCode',
+                                                                                                    'Number_events_country')
+    # finds the number of events in each country mentioned by theses specific media sources
+    return sources_events.groupBy('MentionSourceName', 'ActionGeo_CountryCode', 'Number_events_country').agg(
+        count('GLOBALEVENTID').alias('Number_events_source'))
+
+
+def mentions_biggest_sources1(df_mentions, df_events, selected_sources):
+    mentions_selected_sources = df_mentions.filter(col('MentionSourceName').isin(selected_sources))
+    mentions_selected_sources = mentions_selected_sources.groupBy('MentionSourceName', 'GLOBALEVENTID').agg(count('GLOBALEVENTID').alias('Number_mentions_event'))
+    mentions_selected_sources = mentions_selected_sources.join(df_events, 'GLOBALEVENTID').select('MentionSourceName',
+                                                                                                  'GLOBALEVENTID',
+                                                                                                  'Number_mentions_event',
+                                                                                                  'ActionGeo_CountryCode')
+    return mentions_selected_sources.groupBy('MentionSourceName', 'ActionGeo_CountryCode').agg(
+        sum('Number_mentions_event').alias('Number_Mentions'))
 
 
 def get_delay(df_mentions):
