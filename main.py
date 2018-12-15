@@ -22,25 +22,18 @@ def main():
     events = cleanEvents(events)
     mentions = cleanMentions(mentions)
 
+    start, stop = get_period_mentions(mentions)
+    print('Mentions collection started on {} and stopped on {}'.format(start, stop))
 
+    start, stop = get_period_events_mentions(mentions)
+    print('Events mentioned in the sample of mentions took place from {} to {}'.format(start, stop))
 
-    # start, stop = get_period_mentions(mentions)
-    # print('Mentions collection started on {} and stopped on {}'.format(start, stop))
+    start, stop = get_period_events(events)
+    print('Events recorded in the sample of events started on {} and stopped on {}'.format(start, stop))
 
-    # start, stop = get_period_events_mentions(mentions)
-    # print('Events mentioned in the sample of mentions took place from {} to {}'.format(start, stop))
-
-    # start, stop = get_period_events(events)
-    # print('Events recorded in the sample of events started on {} and stopped on {}'.format(start, stop))
-
-    # Mentions, Mediatic Coverage and Mediatic Attention
-    # CHANGE NUMBER OF DAYS !!!!!!!!
+    # Confidence in our data and 2month delay
+    saveDataFrame(get_confidence(mentions.select('Confidence', 'GLOBALEVENTID')), 'get_confidence')  # TODO: DONE 2Y
     mentions = restric_cov(get_delay(mentions), 60)
-    saveDataFrame(get_media_cov(mentions.select('GLOBALEVENTID'), events), 'get_media_cov')  # TODO: rerun
-
-    # Confidence in our data
-    # CHANGE : select the right columns !!!!!!!!!!
-    # saveDataFrame(get_confidence(mentions.select('Confidence', 'GLOBALEVENTID')), 'get_confidence')  #TODO: DONE 2Y
     mentions = get_goodConfidence(mentions)
     mentions.write.mode('overwrite').parquet("mentions.parquet")
     mentions = spark.read.parquet("mentions.parquet")
@@ -49,28 +42,30 @@ def main():
     events = spark.read.parquet("events.parquet")
     print("events to parquet done")
 
+    # Mentions, Mediatic Coverage and Mediatic Attention
+    saveDataFrame(get_media_cov(mentions.select('GLOBALEVENTID'), events), 'get_media_cov')  #TODO: DONE 2Y
 
     # Origin of our data
-    # CHANGE : select the right columns !!!!!!!!!!
-    # saveDataFrame(get_sources(mentions.select('MentionType', 'GLOBALEVENTID')), 'get_sources')  #TODO: DONE 2Y
-    # NEW !!!!!!!!!!!
-    saveDataFrame(get_sources_names(mentions.select('MentionSourceName')), 'get_sources_names')  # TODO: DONE 4M
+    saveDataFrame(get_sources(mentions.select('MentionType', 'GLOBALEVENTID')), 'get_sources')  # TODO: DONE 2Y
+    saveDataFrame(get_sources_names(mentions.select('MentionSourceName')), 'get_sources_names')  # TODO: DONE 2Y
+    print(get_sources_number(mentions.select('MentionSourceName')))
 
     # milestone 3
-    saveDataFrame(get_events_per_country(events.select('GLOBALEVENTID', 'MonthYear_Date', 'ActionGeo_CountryCode')), 'get_events_country_time')  # TODO: DONE 4M
+    saveDataFrame(get_events_per_country(events.select('GLOBALEVENTID', 'MonthYear_Date', 'ActionGeo_CountryCode')),
+                  'get_events_country_time')  # TODO: DONE 4M
     saveDataFrame(get_activity_byTypeCountry_time(events), 'get_activity_byTypeCountry_time')
     saveDataFrame(get_media_cov_per_country(events, mentions), 'get_media_cov_per_country')
 
     # Time
-    # CHANGE : select the right columns !!!!!!!!!!
-    saveDataFrame(get_events_worldwide(events.select('MonthYear_Date')), 'get_events_worldwide')  #TODO: DONE
-    saveDataFrame(get_media_coverage_worldwide(mentions.select('GLOBALEVENTID', 'MentionTimeDate')), 'get_media_coverage_worldwide')  #TODO: DONE
+    saveDataFrame(get_events_worldwide(events.select('MonthYear_Date')), 'get_events_worldwide')  # TODO: DONE
+    saveDataFrame(get_media_coverage_worldwide(mentions.select('GLOBALEVENTID', 'MentionTimeDate')),
+                  'get_media_coverage_worldwide')  # TODO: DONE
 
-    saveDataFrame(largest_events(mentions), 'largest_events')  #TODO: DONE
-    saveDataFrame(largest_events_day_month_year(mentions), 'largest_events_day_month_year')  #TODO: DONE 4M
+    saveDataFrame(largest_events(mentions), 'largest_events')  # TODO: DONE
+    saveDataFrame(largest_events_day_month_year(mentions), 'largest_events_day_month_year')  # TODO: DONE 4M
 
     # Type of Event Bias
-    # saveDataFrame(get_activity_byType(events.select('EventRootCode', 'GLOBALEVENTID')), 'get_activity_byType')  #TODO: debug empty column
+    saveDataFrame(get_activity_byType(events.select('EventRootCode', 'GLOBALEVENTID')), 'get_activity_byType')  #TODO: debug empty column
 
     # Let's now concentrate on some countries....
     arg = events.select('GLOBALEVENTID', 'MonthYear_Date', 'GoldsteinScale', 'ActionGeo_CountryCode')
@@ -80,8 +75,8 @@ def main():
     events_US.write.mode('overwrite').parquet("arg.parquet")
     events_US = spark.read.parquet("arg.parquet")
     print("US events filtered and stored")
-    # events_US_time = get_events_worldwide(events_US)
-    # saveDataFrame(events_US_time, 'events_US_time')  # TODO: DONE 2Y
+    events_US_time = get_events_worldwide(events_US)
+    saveDataFrame(events_US_time, 'events_US_time')  # TODO: DONE 2Y
     saveDataFrame(get_Goldstein(events_US.select('MonthYear_Date', 'GoldsteinScale')), 'Goldstein_US')
     mentions_US = events_US.join(mentions.select('GLOBALEVENTID', 'MentionTimeDate'), 'GLOBALEVENTID')
     mentions_US.write.mode('overwrite').parquet("arg2.parquet")
@@ -94,8 +89,8 @@ def main():
     events_AS.write.mode('overwrite').parquet("arg.parquet")
     events_AS = spark.read.parquet("arg.parquet")
     print("AS events filtered and stored")
-    # events_AS_time = get_events_worldwide(events_AS)
-    # saveDataFrame(events_AS_time, 'events_AS_time')  # TODO: DONE 2Y
+    events_AS_time = get_events_worldwide(events_AS)
+    saveDataFrame(events_AS_time, 'events_AS_time')  # TODO: DONE 2Y
     saveDataFrame(get_Goldstein(events_AS.select('MonthYear_Date', 'GoldsteinScale')), 'Goldstein_AS')
     mentions_AS = events_AS.join(mentions.select('GLOBALEVENTID', 'MentionTimeDate'), 'GLOBALEVENTID')
     mentions_AS.write.mode('overwrite').parquet("arg2.parquet")
@@ -108,8 +103,8 @@ def main():
     events_PK.write.mode('overwrite').parquet("arg.parquet")
     events_PK = spark.read.parquet("arg.parquet")
     print("PK events filtered and stored")
-    # events_PK_time = get_events_worldwide(events_PK)
-    # saveDataFrame(events_PK_time, 'events_PK_time')  # TODO: DONE 2Y
+    events_PK_time = get_events_worldwide(events_PK)
+    saveDataFrame(events_PK_time, 'events_PK_time')  # TODO: DONE 2Y
     saveDataFrame(get_Goldstein(events_PK.select('MonthYear_Date', 'GoldsteinScale')), 'Goldstein_PK')
     mentions_PK = events_PK.join(mentions.select('GLOBALEVENTID', 'MentionTimeDate'), 'GLOBALEVENTID')
     mentions_PK.write.mode('overwrite').parquet("arg2.parquet")
@@ -122,8 +117,8 @@ def main():
     events_SY.write.mode('overwrite').parquet("arg.parquet")
     events_SY = spark.read.parquet("arg.parquet")
     print("SY events filtered and stored")
-    # events_SY_time = get_events_worldwide(events_SY)
-    # saveDataFrame(events_SY_time, 'events_SY_time')  # TODO: DONE 2Y
+    events_SY_time = get_events_worldwide(events_SY)
+    saveDataFrame(events_SY_time, 'events_SY_time')  # TODO: DONE 2Y
     saveDataFrame(get_Goldstein(events_SY.select('MonthYear_Date', 'GoldsteinScale')), 'Goldstein_SY')
     mentions_SY = events_SY.join(mentions.select('GLOBALEVENTID', 'MentionTimeDate'), 'GLOBALEVENTID')
     mentions_SY.write.mode('overwrite').parquet("arg2.parquet")
@@ -131,7 +126,34 @@ def main():
     print("SY mentions filtered and stored")
     saveDataFrame(get_media_coverage_worldwide(mentions_SY), 'mentions_SY_time')
 
-    saveDataFrame(get_events_media_attention(), 'get_events_media_attention')  # TODO: faire marcher, important
+
+    ###########
+    #  FINAL  #
+    ###########
+
+    biggest_sources_selection = list(
+        ['washingtonpost.com', 'theguardian.com', 'france24.com', 'indiatimes.com', 'onlinenigeria.com'])
+    saveDataFrame(mentions_biggest_sources1(mentions.select('MentionSourceName', 'GLOBALEVENTID'),
+                                            events.select('GLOBALEVENTID', 'ActionGeo_CountryCode'),
+                                            biggest_sources_selection), 'countries_mentions_biggest_sources1')
+
+    saveDataFrame(mentions_biggest_sources2(mentions.select('MentionSourceName', 'GLOBALEVENTID'),
+                                            events.select('GLOBALEVENTID', 'ActionGeo_CountryCode'),
+                                            biggest_sources_selection), 'mentions_biggest_sources2')
+
+    events_spe_countries = events.select('ActionGeo_CountryCode', 'GLOBALEVENTID', 'EventRootCode').filter(
+        col('ActionGeo_CountryCode').isin(list(['US', 'AS', 'SY', 'PK'])))
+    events_spe_countries.write.mode('overwrite').parquet("arg.parquet")
+    events_spe_countries = spark.read.parquet("arg.parquet")
+    saveDataFrame(num_violent_pacif(events_spe_countries, mentions.select('GLOBALEVENTID')), 'num_violent_pacif')
+    saveDataFrame(get_av_media_coverage_country_type(mentions, events_spe_countries),
+                  'get_av_media_coverage_country_type')
+    saveDataFrame(men_per_src_per_country(events.select('ActionGeo_CountryCode', 'GLOBALEVENTID'), mentions.select('GLOBALEVENTID', 'MentionSourceName')), 'men_per_src_per_country')
+
+    saveDataFrame(get_events_media_attention(), 'get_events_media_attention')
+
+    print("At this stage, the cluster should have run for at least 10^308 times the age of Universe.")
+    print("42")
 
     return 0
 
@@ -181,11 +203,20 @@ def get_sources(df_mentions):
 
 def get_sources_names(df_mentions):
     """
-    :return: 500 most prominent media sources
+    :return: 1000 most prominent media sources
     :type df_mentions: DataFrame
     :rtype: DataFrame
     """
-    return df_mentions.groupBy('MentionSourceName').count().orderBy(desc('count')).limit(500)
+    return df_mentions.groupBy('MentionSourceName').count().orderBy(desc('count')).limit(1000)
+
+
+def get_sources_number(df_mentions):
+    """
+    :return: number of sources
+    :type df_mentions: DataFrame
+    :rtype: Column
+    """
+    return df_mentions.groupBy('MentionSourceName').count().count()
 
 
 ##########################
@@ -495,7 +526,8 @@ def get_media_cov_per_country(df_events, df_mentions):
     :type df_mentions: DataFrame
     :rtype: DataFrame
     """
-    df = df_mentions.select('GLOBALEVENTID', 'MentionTimeDate').join(df_events.select('GLOBALEVENTID', 'ActionGeo_CountryCode'), 'GLOBALEVENTID')
+    df = df_mentions.select('GLOBALEVENTID', 'MentionTimeDate').join(
+        df_events.select('GLOBALEVENTID', 'ActionGeo_CountryCode'), 'GLOBALEVENTID')
     df.write.mode('overwrite').parquet("df.parquet")
     df = spark.read.parquet("df.parquet")
     ret = df.withColumn('MentionTimeDate', udf_mention1(df.MentionTimeDate))
@@ -517,6 +549,70 @@ def get_activity_byTypeCountry_time(df_events):
     ret = peace.union(violent)
     return ret.groupby('MonthYear_Date', 'EventRootCode', 'ActionGeo_CountryCode').count()
 
+
+def mentions_biggest_sources1(df_mentions, df_events, selected_sources):
+    mentions_selected_sources = df_mentions.filter(col('MentionSourceName').isin(selected_sources))
+    mentions_selected_sources = mentions_selected_sources.groupBy('MentionSourceName', 'GLOBALEVENTID').agg(
+        count('GLOBALEVENTID').alias('Number_mentions_event'))
+    mentions_selected_sources = mentions_selected_sources.join(df_events, 'GLOBALEVENTID').select('MentionSourceName',
+                                                                                                  'GLOBALEVENTID',
+                                                                                                  'Number_mentions_event',
+                                                                                                  'ActionGeo_CountryCode')
+    return mentions_selected_sources.groupBy('MentionSourceName', 'ActionGeo_CountryCode').agg(
+        sum('Number_mentions_event').alias('Number_Mentions'))
+
+
+def mentions_biggest_sources2(df_mentions, df_events, selected_sources):
+    mentions_selected_sources = df_mentions.filter(col('MentionSourceName').isin(selected_sources))
+    # for each sources finds the IDs of the events it mentiones
+    mentions_selected_sources = mentions_selected_sources.groupBy('MentionSourceName', 'GLOBALEVENTID').count().select(
+        'MentionSourceName', 'GLOBALEVENTID')
+    # find the country for each of these events
+    mentions_selected_sources = mentions_selected_sources.join(df_events, 'GLOBALEVENTID').select('MentionSourceName',
+                                                                                                  'GLOBALEVENTID',
+                                                                                                  'ActionGeo_CountryCode')
+    # finds the overall number of events for each country in the 2 years
+    events_country = df_events.groupBy('ActionGeo_CountryCode').agg(
+        count('GLOBALEVENTID').alias('Number_events_country'))
+    # for each country mentioned in the sources, associates its number of events in the 2 years
+    sources_events = mentions_selected_sources.join(events_country, 'ActionGeo_CountryCode').select('MentionSourceName',
+                                                                                                    'GLOBALEVENTID',
+                                                                                                    'ActionGeo_CountryCode',
+                                                                                                    'Number_events_country')
+    # finds the number of events in each country mentioned by theses specific media sources
+    return sources_events.groupBy('MentionSourceName', 'ActionGeo_CountryCode', 'Number_events_country').agg(
+        count('GLOBALEVENTID').alias('Number_events_source'))
+
+
+def get_av_media_coverage_country_type(df_mentions, df_events):
+    violent = get_violentevents(df_events)
+    peace = get_peacefullevents(df_events)
+    df = peace.union(violent)
+    df1 = df.join(df_mentions, 'GLOBALEVENTID').select('GLOBALEVENTID', 'ActionGeo_CountryCode', 'EventRootCode')
+    df2 = df1.groupBy('ActionGeo_CountryCode', 'EventRootCode', 'GLOBALEVENTID').agg(
+        count('GLOBALEVENTID').alias('Number_mentions'))
+    return df2.groupBy('ActionGeo_CountryCode', 'EventRootCode').agg(
+        mean('Number_mentions').alias('Average media coverage per event'))
+
+
+def num_violent_pacif(df_events, df_mentions):
+    """
+    :return: mentions per event per country per eventrootcode
+    :type df_events: DataFrame
+    :type df_mentions: DataFrame
+    :rtype: DataFrame
+    """
+    return df_events.join(df_mentions, 'GLOBALEVENTID').groupBy('GLOBALEVENTID', 'ActionGeo_CountryCode', 'EventRootCode').count()
+
+
+def men_per_src_per_country(df_events, df_mentions):
+    """
+    :return: number of times each country is mentioned by each media source
+    :type df_events: DataFrame
+    :type df_mentions: DataFrame
+    :rtype: DataFrame
+    """
+    return df_events.join(df_mentions, 'GLOBALEVENTID').groupBy('ActionGeo_CountryCode', 'MentionSourceName').count()
 
 def get_events_media_attention():
     df = mentions.select('GLOBALEVENTID', 'EventTimeDate', 'MentionTimeDate')

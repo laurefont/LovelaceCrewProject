@@ -2,9 +2,11 @@ __pycache__/
 export.parquet/
 mentions.parquet/
 spark-warehouse/
+output/
 .ipynb_checkpoints/
 .idea/
 *.parquet/
+./*.parquet/
 .DS_Store
 **/.DS_Store
 **/_SUCCESS
