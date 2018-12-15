@@ -32,19 +32,6 @@ def main():
     events = spark.read.parquet("events.parquet")
     print("events to parquet done")
 
-    biggest_sources_selection = list(
-        ['france24.com', 'washingtonpost.com', 'theguardian.com', 'thejakartapost.com', 'thehindu.com',
-         'dailytelegraph.com.au', 'gulfnews.com', 'japantimes.co.jp', 'chinadaily.com.cn', 'timesofisrael.com',
-         'rt.com', 'kenyastar.com'])
-    saveDataFrame(mentions_biggest_sources1(mentions.select('MentionSourceName', 'GLOBALEVENTID'),
-                                            events.select('GLOBALEVENTID', 'ActionGeo_CountryCode'),
-                                            biggest_sources_selection), 'countries_mentions_biggest_sources1')
-
-    saveDataFrame(mentions_biggest_sources2(mentions.select('MentionSourceName', 'GLOBALEVENTID'),
-                                            events.select('GLOBALEVENTID', 'ActionGeo_CountryCode'),
-                                            biggest_sources_selection), 'mentions_biggest_sources2')
-    saveDataFrame(get_activity_byGoldstein(events.select('GLOBALEVENTID', 'GoldsteinScale')),
-                  'get_activity_byGoldstein')
     saveDataFrame(
         Goldstein_mediaCov(mentions.select('GLOBALEVENTID'), events.select('GLOBALEVENTID', 'GoldsteinScale')),
         'Goldstein_mediaCov')
@@ -66,8 +53,8 @@ def get_media_cov(df_mentions, df_events):
 
 
 def Goldstein_mediaCov(df_mentions, df_events):
-    media_coverage = get_media_cov(df_mentions)
-    df = media_coverage.join(df_events, 'GLOBALEVENTID').select('GoldsteinScale', 'Number Mentions')
+    media_coverage = get_media_cov(df_mentions, df_events)
+    df = media_coverage.join(df_events, 'GLOBALEVENTID').select(df_events.GoldsteinScale, 'Number Mentions')
     return df.groupBy('GoldsteinScale').agg(avg('Number mentions').alias('Average media coverage per event'))
 
 
