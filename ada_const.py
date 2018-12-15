@@ -231,7 +231,17 @@ FIPS_ISO = dict([('AG', 'DZ'),  # Algerie
                  ('WI', 'EH'),
                  ('YM', 'YE'),
                  ('ZA', 'ZM'),
-                 ('ZI', 'ZW')])
+                 ('ZI', 'ZW'),
+                 ('DA','DK'),
+                 ('EI', 'IE'),
+                 ('FG', 'GF'),
+                 ('LO', 'SK'),
+                 ('UP', 'UA'),
+                 ('VM', 'VN'),
+                 ('GM', 'DE'),
+                 ('GG', 'GE'),
+                 ('KV', 'XK'),
+                 ('YI', 'ME')])
 
 NEWS_SOURCES = ['Web Sources',
                 'Offline Sources',
