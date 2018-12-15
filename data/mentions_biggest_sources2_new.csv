@@ -9,7 +9,6 @@ washingtonpost.com,LT,50946,31
 japantimes.co.jp,LT,50946,8
 thehindu.com,LT,50946,1
 rt.com,LT,50946,2
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 theguardian.com,CI,208073,639
 washingtonpost.com,CI,208073,1004
 france24.com,CI,208073,475
@@ -25,7 +24,6 @@ kenyastar.com,CI,208073,8
 washingtonpost.com,PC,1622,8
 dailytelegraph.com.au,PC,1622,16
 theguardian.com,PC,1622,4
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 france24.com,FI,172258,281
 rt.com,FI,172258,192
 theguardian.com,FI,172258,435
@@ -63,14 +61,12 @@ japantimes.co.jp,PM,203495,126
 chinadaily.com.cn,PM,203495,90
 kenyastar.com,PM,203495,5
 washingtonpost.com,SC,7881,1
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 theguardian.com,PU,9863,13
 gulfnews.com,PU,9863,25
 washingtonpost.com,PU,9863,13
 france24.com,PU,9863,24
 kenyastar.com,PU,9863,3
 thehindu.com,PU,9863,6
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 thehindu.com,NS,10945,14
 washingtonpost.com,NS,10945,45
 dailytelegraph.com.au,NS,10945,25
@@ -82,7 +78,6 @@ thejakartapost.com,NS,10945,11
 timesofisrael.com,NS,10945,1
 gulfnews.com,NS,10945,1
 rt.com,NS,10945,5
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,RO,268588,1430
 rt.com,RO,268588,207
 thehindu.com,RO,268588,97
@@ -95,7 +90,6 @@ chinadaily.com.cn,RO,268588,47
 gulfnews.com,RO,268588,187
 japantimes.co.jp,RO,268588,93
 kenyastar.com,RO,268588,9
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 gulfnews.com,SL,124850,129
 france24.com,SL,124850,114
 washingtonpost.com,SL,124850,239
@@ -108,7 +102,6 @@ timesofisrael.com,SL,124850,26
 thejakartapost.com,SL,124850,21
 kenyastar.com,SL,124850,31
 rt.com,SL,124850,18
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 chinadaily.com.cn,LA,109019,394
 thejakartapost.com,LA,109019,270
 washingtonpost.com,LA,109019,296
@@ -133,7 +126,6 @@ rt.com,NL,608573,647
 dailytelegraph.com.au,NL,608573,631
 japantimes.co.jp,NL,608573,471
 kenyastar.com,NL,608573,80
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 chinadaily.com.cn,MN,31477,29
 theguardian.com,MN,31477,111
 washingtonpost.com,MN,31477,70
@@ -146,7 +138,6 @@ thejakartapost.com,MN,31477,25
 rt.com,MN,31477,9
 dailytelegraph.com.au,MN,31477,31
 thehindu.com,MN,31477,8
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 gulfnews.com,AM,460767,229
 timesofisrael.com,AM,460767,310
 washingtonpost.com,AM,460767,455
@@ -203,7 +194,6 @@ thehindu.com,UV,65531,49
 kenyastar.com,UV,65531,19
 rt.com,UV,65531,9
 chinadaily.com.cn,UV,65531,18
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 gulfnews.com,AA,11257,5
 washingtonpost.com,AA,11257,18
 dailytelegraph.com.au,AA,11257,4
@@ -223,7 +213,6 @@ rt.com,MK,132758,195
 gulfnews.com,MK,132758,149
 timesofisrael.com,MK,132758,47
 chinadaily.com.cn,MK,132758,33
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 theguardian.com,AY,25643,96
 gulfnews.com,AY,25643,50
 washingtonpost.com,AY,25643,179
@@ -248,7 +237,6 @@ japantimes.co.jp,DR,76452,38
 rt.com,DR,76452,12
 chinadaily.com.cn,DR,76452,2
 kenyastar.com,DR,76452,7
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,MX,1281931,10773
 rt.com,MX,1281931,782
 theguardian.com,MX,1281931,3851
@@ -269,7 +257,6 @@ thehindu.com,PF,2062,3
 theguardian.com,PF,2062,2
 france24.com,PF,2062,2
 japantimes.co.jp,PF,2062,4
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,YI,4441,17
 thehindu.com,YI,4441,3
 gulfnews.com,YI,4441,4
@@ -281,7 +268,6 @@ dailytelegraph.com.au,YI,4441,2
 timesofisrael.com,YI,4441,1
 chinadaily.com.cn,YI,4441,3
 kenyastar.com,YI,4441,3
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 theguardian.com,GL,28172,125
 japantimes.co.jp,GL,28172,22
 washingtonpost.com,GL,28172,157
@@ -300,7 +286,6 @@ washingtonpost.com,TV,6896,1
 thehindu.com,TV,6896,4
 japantimes.co.jp,TV,6896,2
 france24.com,TV,6896,2
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 dailytelegraph.com.au,BP,26209,46
 thehindu.com,BP,26209,6
 chinadaily.com.cn,BP,26209,4
@@ -312,14 +297,12 @@ japantimes.co.jp,BP,26209,5
 timesofisrael.com,BP,26209,1
 rt.com,BP,26209,3
 france24.com,BP,26209,4
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,SM,2690,2
 gulfnews.com,SM,2690,2
 thehindu.com,SM,2690,6
 chinadaily.com.cn,SM,2690,3
 france24.com,SM,2690,1
 rt.com,SM,2690,2
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 gulfnews.com,CN,4301,82
 france24.com,CN,4301,27
 theguardian.com,CN,4301,20
@@ -331,7 +314,6 @@ kenyastar.com,CN,4301,1
 chinadaily.com.cn,CN,4301,3
 japantimes.co.jp,CN,4301,5
 thehindu.com,CN,4301,1
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,FG,3236,27
 france24.com,FG,3236,35
 theguardian.com,FG,3236,3
@@ -341,7 +323,6 @@ rt.com,FG,3236,3
 dailytelegraph.com.au,FG,3236,2
 timesofisrael.com,FG,3236,1
 gulfnews.com,FG,3236,1
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 kenyastar.com,TI,107025,114
 chinadaily.com.cn,TI,107025,74
 france24.com,TI,107025,70
@@ -354,7 +335,6 @@ japantimes.co.jp,TI,107025,20
 thehindu.com,TI,107025,47
 dailytelegraph.com.au,TI,107025,18
 thejakartapost.com,TI,107025,6
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 gulfnews.com,SW,480991,882
 washingtonpost.com,SW,480991,2040
 thehindu.com,SW,480991,598
@@ -367,7 +347,6 @@ france24.com,SW,480991,994
 thejakartapost.com,SW,480991,322
 kenyastar.com,SW,480991,45
 chinadaily.com.cn,SW,480991,193
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 theguardian.com,AV,9012,34
 dailytelegraph.com.au,AV,9012,2
 france24.com,AV,9012,7
@@ -376,7 +355,6 @@ thehindu.com,AV,9012,3
 gulfnews.com,AV,9012,2
 timesofisrael.com,AV,9012,2
 japantimes.co.jp,AV,9012,1
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 thejakartapost.com,BU,235893,54
 washingtonpost.com,BU,235893,266
 timesofisrael.com,BU,235893,222
@@ -389,7 +367,6 @@ gulfnews.com,BU,235893,140
 kenyastar.com,BU,235893,92
 thehindu.com,BU,235893,102
 japantimes.co.jp,BU,235893,44
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 theguardian.com,CG,59921,251
 thehindu.com,CG,59921,30
 france24.com,CG,59921,272
@@ -402,7 +379,6 @@ timesofisrael.com,CG,59921,2
 rt.com,CG,59921,4
 thejakartapost.com,CG,59921,8
 dailytelegraph.com.au,CG,59921,1
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 thehindu.com,HR,130969,67
 washingtonpost.com,HR,130969,538
 theguardian.com,HR,130969,246
@@ -435,7 +411,6 @@ dailytelegraph.com.au,SV,4237,15
 theguardian.com,SV,4237,24
 thehindu.com,SV,4237,10
 japantimes.co.jp,SV,4237,5
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,BX,191453,413
 thejakartapost.com,BX,191453,463
 france24.com,BX,191453,117
@@ -472,7 +447,6 @@ chinadaily.com.cn,WE,282978,31
 theguardian.com,WE,282978,311
 kenyastar.com,WE,282978,10
 dailytelegraph.com.au,WE,282978,65
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,TU,2613410,12298
 theguardian.com,TU,2613410,6135
 dailytelegraph.com.au,TU,2613410,2411
@@ -485,7 +459,6 @@ rt.com,TU,2613410,6778
 thehindu.com,TU,2613410,2552
 chinadaily.com.cn,TU,2613410,1300
 kenyastar.com,TU,2613410,548
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,SO,538616,2199
 japantimes.co.jp,SO,538616,485
 chinadaily.com.cn,SO,538616,232
@@ -498,7 +471,6 @@ kenyastar.com,SO,538616,1495
 thejakartapost.com,SO,538616,164
 thehindu.com,SO,538616,453
 timesofisrael.com,SO,538616,257
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,VQ,21045,81
 france24.com,VQ,21045,3
 timesofisrael.com,VQ,21045,7
@@ -510,7 +482,6 @@ gulfnews.com,VQ,21045,3
 japantimes.co.jp,VQ,21045,4
 thehindu.com,VQ,21045,2
 thejakartapost.com,VQ,21045,1
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 gulfnews.com,GG,103145,55
 thehindu.com,GG,103145,16
 theguardian.com,GG,103145,84
@@ -557,7 +528,6 @@ kenyastar.com,RQ,101203,5
 rt.com,RQ,101203,44
 thehindu.com,RQ,101203,56
 chinadaily.com.cn,RQ,101203,5
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 theguardian.com,BC,127422,113
 gulfnews.com,BC,127422,34
 thejakartapost.com,BC,127422,15
@@ -582,7 +552,6 @@ rt.com,GH,870982,13
 chinadaily.com.cn,GH,870982,74
 kenyastar.com,GH,870982,46
 thejakartapost.com,GH,870982,41
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 gulfnews.com,BN,77524,80
 washingtonpost.com,BN,77524,82
 kenyastar.com,BN,77524,23
@@ -628,7 +597,6 @@ kenyastar.com,NH,30040,8
 thehindu.com,NH,30040,6
 rt.com,NH,30040,4
 timesofisrael.com,NH,30040,2
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,MI,183718,138
 theguardian.com,MI,183718,155
 thehindu.com,MI,183718,29
@@ -653,7 +621,6 @@ dailytelegraph.com.au,TW,398902,216
 gulfnews.com,TW,398902,447
 kenyastar.com,TW,398902,52
 timesofisrael.com,TW,398902,75
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,GV,61103,314
 rt.com,GV,61103,19
 theguardian.com,GV,61103,194
@@ -666,7 +633,6 @@ timesofisrael.com,GV,61103,27
 dailytelegraph.com.au,GV,61103,55
 thehindu.com,GV,61103,56
 chinadaily.com.cn,GV,61103,35
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 kenyastar.com,SU,515763,1475
 theguardian.com,SU,515763,1027
 france24.com,SU,515763,944
@@ -679,7 +645,6 @@ thehindu.com,SU,515763,271
 japantimes.co.jp,SU,515763,293
 dailytelegraph.com.au,SU,515763,160
 rt.com,SU,515763,93
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 thehindu.com,BD,57798,16
 rt.com,BD,57798,5
 theguardian.com,BD,57798,42
@@ -691,7 +656,6 @@ japantimes.co.jp,BD,57798,5
 thejakartapost.com,BD,57798,2
 timesofisrael.com,BD,57798,1
 kenyastar.com,BD,57798,1
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,TO,25173,70
 france24.com,TO,25173,152
 timesofisrael.com,TO,25173,14
@@ -713,7 +677,6 @@ theguardian.com,WI,16322,11
 chinadaily.com.cn,WI,16322,3
 thejakartapost.com,WI,16322,5
 kenyastar.com,WI,16322,3
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 theguardian.com,FK,1511,1
 washingtonpost.com,FK,1511,4
 thejakartapost.com,ID,972649,66781
@@ -740,7 +703,6 @@ thejakartapost.com,LY,530590,241
 chinadaily.com.cn,LY,530590,255
 timesofisrael.com,LY,530590,626
 kenyastar.com,LY,530590,113
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 theguardian.com,IV,66893,180
 washingtonpost.com,IV,66893,343
 france24.com,IV,66893,482
@@ -753,7 +715,6 @@ timesofisrael.com,IV,66893,13
 thejakartapost.com,IV,66893,21
 rt.com,IV,66893,11
 chinadaily.com.cn,IV,66893,19
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 chinadaily.com.cn,TP,3087,23
 japantimes.co.jp,TP,3087,5
 thehindu.com,TP,3087,7
@@ -762,7 +723,6 @@ gulfnews.com,TP,3087,5
 france24.com,TP,3087,3
 thejakartapost.com,TP,3087,5
 dailytelegraph.com.au,TP,3087,2
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 chinadaily.com.cn,AU,393200,244
 thejakartapost.com,AU,393200,308
 japantimes.co.jp,AU,393200,470
@@ -811,7 +771,6 @@ washingtonpost.com,SA,1506766,5693
 thehindu.com,SA,1506766,2702
 chinadaily.com.cn,SA,1506766,728
 kenyastar.com,SA,1506766,138
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,BL,71578,388
 gulfnews.com,BL,71578,77
 theguardian.com,BL,71578,236
@@ -848,7 +807,6 @@ dailytelegraph.com.au,CA,4162240,1480
 france24.com,CA,4162240,1737
 kenyastar.com,CA,4162240,238
 thejakartapost.com,CA,4162240,699
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,CT,81686,657
 thehindu.com,CT,81686,51
 thejakartapost.com,CT,81686,72
@@ -875,7 +833,6 @@ gulfnews.com,UZ,122125,95
 kenyastar.com,UZ,122125,25
 japantimes.co.jp,UZ,122125,83
 thejakartapost.com,UZ,122125,18
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 france24.com,GB,26056,218
 chinadaily.com.cn,GB,26056,12
 gulfnews.com,GB,26056,96
@@ -900,7 +857,6 @@ thehindu.com,MT,212230,44
 timesofisrael.com,MT,212230,37
 thejakartapost.com,MT,212230,24
 kenyastar.com,MT,212230,7
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 thejakartapost.com,BR,603735,402
 france24.com,BR,603735,2466
 chinadaily.com.cn,BR,603735,959
@@ -925,7 +881,6 @@ japantimes.co.jp,KZ,192051,94
 gulfnews.com,KZ,192051,317
 timesofisrael.com,KZ,192051,151
 kenyastar.com,KZ,192051,21
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,BY,149896,962
 france24.com,BY,149896,757
 gulfnews.com,BY,149896,365
@@ -957,7 +912,6 @@ japantimes.co.jp,NC,6746,2
 theguardian.com,NC,6746,24
 washingtonpost.com,NC,6746,3
 thehindu.com,NC,6746,1
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,VT,61996,335
 theguardian.com,VT,61996,108
 gulfnews.com,VT,61996,118
@@ -970,7 +924,6 @@ dailytelegraph.com.au,VT,61996,16
 timesofisrael.com,VT,61996,57
 thehindu.com,VT,61996,30
 chinadaily.com.cn,VT,61996,2
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 japantimes.co.jp,EN,103002,67
 theguardian.com,EN,103002,148
 gulfnews.com,EN,103002,99
@@ -1014,7 +967,6 @@ japantimes.co.jp,MD,74674,9
 thejakartapost.com,MD,74674,6
 thehindu.com,MD,74674,4
 kenyastar.com,MD,74674,4
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 theguardian.com,IO,725,28
 thehindu.com,IO,725,4
 theguardian.com,RB,132112,216
@@ -1029,7 +981,6 @@ gulfnews.com,RB,132112,132
 dailytelegraph.com.au,RB,132112,55
 thehindu.com,RB,132112,26
 kenyastar.com,RB,132112,14
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 japantimes.co.jp,GJ,35792,10
 theguardian.com,GJ,35792,39
 timesofisrael.com,GJ,35792,6
@@ -1052,7 +1003,6 @@ chinadaily.com.cn,SP,897455,509
 timesofisrael.com,SP,897455,949
 thehindu.com,SP,897455,630
 rt.com,SP,897455,840
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 theguardian.com,BH,119036,63
 washingtonpost.com,BH,119036,85
 gulfnews.com,BH,119036,19
@@ -1123,7 +1073,6 @@ rt.com,NR,33224,31
 thehindu.com,NR,33224,19
 chinadaily.com.cn,NR,33224,3
 kenyastar.com,NR,33224,5
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 timesofisrael.com,VI,13677,8
 france24.com,VI,13677,20
 theguardian.com,VI,13677,63
@@ -1135,7 +1084,6 @@ gulfnews.com,VI,13677,9
 thehindu.com,VI,13677,4
 japantimes.co.jp,VI,13677,2
 chinadaily.com.cn,VI,13677,2
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 thehindu.com,PO,211090,369
 france24.com,PO,211090,502
 washingtonpost.com,PO,211090,783
@@ -1148,7 +1096,6 @@ timesofisrael.com,PO,211090,184
 kenyastar.com,PO,211090,11
 japantimes.co.jp,PO,211090,127
 chinadaily.com.cn,PO,211090,165
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 theguardian.com,MR,28881,117
 timesofisrael.com,MR,28881,30
 gulfnews.com,MR,28881,97
@@ -1172,7 +1119,6 @@ timesofisrael.com,VE,357396,149
 dailytelegraph.com.au,VE,357396,92
 kenyastar.com,VE,357396,44
 thejakartapost.com,VE,357396,95
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,MB,3825,4
 theguardian.com,MB,3825,5
 timesofisrael.com,MB,3825,3
@@ -1194,7 +1140,6 @@ thehindu.com,OD,232300,199
 timesofisrael.com,OD,232300,56
 thejakartapost.com,OD,232300,61
 rt.com,OD,232300,25
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,ZA,275364,122
 theguardian.com,ZA,275364,130
 gulfnews.com,ZA,275364,71
@@ -1207,7 +1152,6 @@ timesofisrael.com,ZA,275364,8
 dailytelegraph.com.au,ZA,275364,41
 japantimes.co.jp,ZA,275364,6
 thejakartapost.com,ZA,275364,7
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,SF,2115270,2591
 theguardian.com,SF,2115270,2816
 thejakartapost.com,SF,2115270,298
@@ -1220,7 +1164,6 @@ japantimes.co.jp,SF,2115270,344
 dailytelegraph.com.au,SF,2115270,702
 kenyastar.com,SF,2115270,1171
 rt.com,SF,2115270,236
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,KR,10467,37
 theguardian.com,KR,10467,45
 japantimes.co.jp,KR,10467,37
@@ -1229,7 +1172,6 @@ gulfnews.com,KR,10467,15
 france24.com,KR,10467,4
 thejakartapost.com,KR,10467,15
 thehindu.com,KR,10467,3
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 theguardian.com,TZ,287883,520
 france24.com,TZ,287883,178
 washingtonpost.com,TZ,287883,488
@@ -1254,7 +1196,6 @@ france24.com,WA,150396,35
 rt.com,WA,150396,6
 japantimes.co.jp,WA,150396,19
 thejakartapost.com,WA,150396,7
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,AQ,8624,65
 thejakartapost.com,AQ,8624,8
 timesofisrael.com,AQ,8624,3
@@ -1289,7 +1230,6 @@ chinadaily.com.cn,US,58158596,16636
 gulfnews.com,US,58158596,44737
 thejakartapost.com,US,58158596,11577
 france24.com,US,58158596,24086
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 rt.com,LH,104012,270
 timesofisrael.com,LH,104012,262
 theguardian.com,LH,104012,175
@@ -1314,7 +1254,6 @@ thejakartapost.com,TS,215273,183
 timesofisrael.com,TS,215273,506
 chinadaily.com.cn,TS,215273,122
 kenyastar.com,TS,215273,61
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 france24.com,EK,20183,59
 theguardian.com,EK,20183,27
 washingtonpost.com,EK,20183,46
@@ -1325,7 +1264,6 @@ chinadaily.com.cn,EK,20183,13
 dailytelegraph.com.au,EK,20183,8
 thejakartapost.com,EK,20183,4
 japantimes.co.jp,EK,20183,7
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 france24.com,AL,116990,233
 washingtonpost.com,AL,116990,709
 japantimes.co.jp,AL,116990,76
@@ -1338,7 +1276,6 @@ timesofisrael.com,AL,116990,72
 thehindu.com,AL,116990,14
 thejakartapost.com,AL,116990,16
 kenyastar.com,AL,116990,3
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 thejakartapost.com,MY,1208132,5180
 chinadaily.com.cn,MY,1208132,965
 gulfnews.com,MY,1208132,1652
@@ -1351,7 +1288,6 @@ rt.com,MY,1208132,297
 france24.com,MY,1208132,914
 kenyastar.com,MY,1208132,140
 timesofisrael.com,MY,1208132,137
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 thehindu.com,IN,7356077,257635
 thejakartapost.com,IN,7356077,1275
 theguardian.com,IN,7356077,4043
@@ -1376,7 +1312,6 @@ timesofisrael.com,JM,294742,56
 japantimes.co.jp,JM,294742,45
 thehindu.com,JM,294742,21
 kenyastar.com,JM,294742,8
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,GM,2337771,12246
 dailytelegraph.com.au,GM,2337771,2482
 thejakartapost.com,GM,2337771,1710
@@ -1389,7 +1324,6 @@ chinadaily.com.cn,GM,2337771,2560
 theguardian.com,GM,2337771,8789
 japantimes.co.jp,GM,2337771,2941
 kenyastar.com,GM,2337771,405
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,BK,52989,327
 gulfnews.com,BK,52989,85
 rt.com,BK,52989,46
@@ -1402,7 +1336,6 @@ japantimes.co.jp,BK,52989,25
 thehindu.com,BK,52989,10
 kenyastar.com,BK,52989,7
 thejakartapost.com,BK,52989,12
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 gulfnews.com,AE,580312,32666
 washingtonpost.com,AE,580312,1237
 chinadaily.com.cn,AE,580312,153
@@ -1427,7 +1360,6 @@ dailytelegraph.com.au,KV,60665,16
 theguardian.com,KV,60665,72
 thehindu.com,KV,60665,10
 kenyastar.com,KV,60665,5
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 theguardian.com,CM,145136,233
 kenyastar.com,CM,145136,39
 gulfnews.com,CM,145136,205
@@ -1440,7 +1372,6 @@ rt.com,CM,145136,38
 japantimes.co.jp,CM,145136,107
 timesofisrael.com,CM,145136,19
 thejakartapost.com,CM,145136,21
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 rt.com,MJ,27760,83
 france24.com,MJ,27760,93
 washingtonpost.com,MJ,27760,220
@@ -1465,7 +1396,6 @@ rt.com,RW,247494,54
 dailytelegraph.com.au,RW,247494,91
 japantimes.co.jp,RW,247494,62
 thejakartapost.com,RW,247494,24
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 japantimes.co.jp,FR,2821917,4359
 france24.com,FR,2821917,26143
 timesofisrael.com,FR,2821917,7473
@@ -1478,7 +1408,6 @@ gulfnews.com,FR,2821917,8168
 rt.com,FR,2821917,4926
 chinadaily.com.cn,FR,2821917,2586
 kenyastar.com,FR,2821917,557
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 france24.com,AJ,387021,178
 theguardian.com,AJ,387021,232
 gulfnews.com,AJ,387021,158
@@ -1491,7 +1420,6 @@ japantimes.co.jp,AJ,387021,50
 thejakartapost.com,AJ,387021,34
 dailytelegraph.com.au,AJ,387021,28
 chinadaily.com.cn,AJ,387021,67
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 thejakartapost.com,DA,269619,200
 dailytelegraph.com.au,DA,269619,273
 washingtonpost.com,DA,269619,1281
@@ -1505,7 +1433,6 @@ japantimes.co.jp,DA,269619,249
 kenyastar.com,DA,269619,36
 thehindu.com,DA,269619,506
 theguardian.com,KQ,9,1
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 chinadaily.com.cn,CH,4837175,129110
 dailytelegraph.com.au,CH,4837175,4790
 france24.com,CH,4837175,7366
@@ -1530,7 +1457,6 @@ thejakartapost.com,MG,67544,38
 rt.com,MG,67544,21
 kenyastar.com,MG,67544,12
 timesofisrael.com,MG,67544,5
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 thejakartapost.com,TN,24451,7
 chinadaily.com.cn,TN,24451,25
 washingtonpost.com,TN,24451,30
@@ -1540,7 +1466,6 @@ theguardian.com,TN,24451,11
 thehindu.com,TN,24451,5
 france24.com,TN,24451,13
 dailytelegraph.com.au,TN,24451,10
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 theguardian.com,GQ,91566,84
 washingtonpost.com,GQ,91566,401
 dailytelegraph.com.au,GQ,91566,43
@@ -1553,7 +1478,6 @@ thehindu.com,GQ,91566,36
 timesofisrael.com,GQ,91566,16
 gulfnews.com,GQ,91566,21
 kenyastar.com,GQ,91566,2
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,NU,57397,273
 theguardian.com,NU,57397,127
 dailytelegraph.com.au,NU,57397,17
@@ -1565,7 +1489,6 @@ timesofisrael.com,NU,57397,19
 thehindu.com,NU,57397,21
 thejakartapost.com,NU,57397,8
 chinadaily.com.cn,NU,57397,6
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 dailytelegraph.com.au,KT,3785,35
 theguardian.com,KT,3785,84
 thejakartapost.com,KT,3785,6
@@ -1586,7 +1509,6 @@ rt.com,ZI,681718,88
 france24.com,ZI,681718,353
 japantimes.co.jp,ZI,681718,84
 timesofisrael.com,ZI,681718,19
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,GR,970467,4669
 france24.com,GR,970467,3335
 gulfnews.com,GR,970467,2134
@@ -1611,7 +1533,6 @@ timesofisrael.com,UP,895054,739
 chinadaily.com.cn,UP,895054,317
 thehindu.com,UP,895054,410
 kenyastar.com,UP,895054,144
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 france24.com,GI,34212,60
 rt.com,GI,34212,34
 dailytelegraph.com.au,GI,34212,17
@@ -1648,7 +1569,6 @@ timesofisrael.com,TD,182840,12
 rt.com,TD,182840,1
 thehindu.com,TD,182840,13
 thejakartapost.com,TD,182840,3
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 japantimes.co.jp,RP,2214262,3116
 dailytelegraph.com.au,RP,2214262,890
 france24.com,RP,2214262,2143
@@ -1661,7 +1581,6 @@ timesofisrael.com,RP,2214262,222
 thejakartapost.com,RP,2214262,3060
 rt.com,RP,2214262,785
 kenyastar.com,RP,2214262,201
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 kenyastar.com,AG,154645,37
 washingtonpost.com,AG,154645,506
 theguardian.com,AG,154645,224
@@ -1674,7 +1593,6 @@ dailytelegraph.com.au,AG,154645,66
 rt.com,AG,154645,107
 chinadaily.com.cn,AG,154645,45
 thejakartapost.com,AG,154645,32
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 rt.com,DJ,73618,54
 thehindu.com,DJ,73618,155
 theguardian.com,DJ,73618,120
@@ -1699,7 +1617,6 @@ rt.com,MC,26049,4
 thejakartapost.com,MC,26049,27
 timesofisrael.com,MC,26049,1
 kenyastar.com,MC,26049,1
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 theguardian.com,HA,186385,400
 washingtonpost.com,HA,186385,1544
 thejakartapost.com,HA,186385,66
@@ -1712,7 +1629,6 @@ thehindu.com,HA,186385,42
 japantimes.co.jp,HA,186385,118
 chinadaily.com.cn,HA,186385,30
 rt.com,HA,186385,69
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 thejakartapost.com,BA,223321,102
 gulfnews.com,BA,223321,2239
 france24.com,BA,223321,493
@@ -1737,7 +1653,6 @@ timesofisrael.com,JO,472375,2584
 kenyastar.com,JO,472375,61
 chinadaily.com.cn,JO,472375,154
 dailytelegraph.com.au,JO,472375,288
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 japantimes.co.jp,ET,346913,152
 washingtonpost.com,ET,346913,1126
 timesofisrael.com,ET,346913,620
@@ -1750,7 +1665,6 @@ kenyastar.com,ET,346913,343
 thehindu.com,ET,346913,230
 thejakartapost.com,ET,346913,59
 dailytelegraph.com.au,ET,346913,58
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,SG,92422,422
 france24.com,SG,92422,355
 gulfnews.com,SG,92422,231
@@ -1763,7 +1677,6 @@ kenyastar.com,SG,92422,36
 chinadaily.com.cn,SG,92422,37
 thejakartapost.com,SG,92422,26
 rt.com,SG,92422,17
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 theguardian.com,EI,1444767,5162
 washingtonpost.com,EI,1444767,1761
 timesofisrael.com,EI,1444767,284
@@ -1776,7 +1689,6 @@ chinadaily.com.cn,EI,1444767,183
 thejakartapost.com,EI,1444767,128
 thehindu.com,EI,1444767,493
 kenyastar.com,EI,1444767,104
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 france24.com,BF,202491,39
 washingtonpost.com,BF,202491,308
 gulfnews.com,BF,202491,61
@@ -1789,7 +1701,6 @@ thehindu.com,BF,202491,24
 japantimes.co.jp,BF,202491,21
 rt.com,BF,202491,19
 kenyastar.com,BF,202491,3
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 rt.com,CU,656232,557
 france24.com,CU,656232,1628
 washingtonpost.com,CU,656232,5313
@@ -1814,7 +1725,6 @@ thejakartapost.com,IT,1332785,758
 timesofisrael.com,IT,1332785,1524
 chinadaily.com.cn,IT,1332785,925
 kenyastar.com,IT,1332785,235
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 gulfnews.com,FO,3265,7
 theguardian.com,FO,3265,16
 rt.com,FO,3265,9
@@ -1836,7 +1746,6 @@ rt.com,MV,75490,28
 chinadaily.com.cn,MV,75490,44
 timesofisrael.com,MV,75490,15
 kenyastar.com,MV,75490,20
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 japantimes.co.jp,SE,38478,25
 washingtonpost.com,SE,38478,54
 gulfnews.com,SE,38478,53
@@ -1860,7 +1769,6 @@ kenyastar.com,VM,889210,98
 rt.com,VM,889210,209
 thejakartapost.com,VM,889210,984
 thehindu.com,VM,889210,590
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 thejakartapost.com,BG,1044479,995
 washingtonpost.com,BG,1044479,2738
 theguardian.com,BG,1044479,1623
@@ -1895,7 +1803,6 @@ rt.com,WS,59593,4
 chinadaily.com.cn,WS,59593,3
 timesofisrael.com,WS,59593,1
 thehindu.com,WS,59593,1
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 gulfnews.com,KU,224156,3647
 washingtonpost.com,KU,224156,642
 timesofisrael.com,KU,224156,235
@@ -1908,7 +1815,6 @@ rt.com,KU,224156,143
 japantimes.co.jp,KU,224156,111
 chinadaily.com.cn,KU,224156,35
 kenyastar.com,KU,224156,14
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 theguardian.com,UK,8607150,129984
 rt.com,UK,8607150,12598
 chinadaily.com.cn,UK,8607150,5826
@@ -1921,7 +1827,6 @@ gulfnews.com,UK,8607150,17120
 thejakartapost.com,UK,8607150,2496
 france24.com,UK,8607150,9891
 japantimes.co.jp,UK,8607150,5063
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,CJ,37779,42
 france24.com,CJ,37779,4
 dailytelegraph.com.au,CJ,37779,22
@@ -1933,7 +1838,6 @@ japantimes.co.jp,CJ,37779,5
 gulfnews.com,CJ,37779,1
 thehindu.com,CJ,37779,4
 thejakartapost.com,CJ,37779,1
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 theguardian.com,CW,18004,1
 france24.com,CW,18004,3
 gulfnews.com,CW,18004,2
@@ -1968,7 +1872,6 @@ thehindu.com,MH,4280,3
 dailytelegraph.com.au,MH,4280,2
 timesofisrael.com,MH,4280,1
 gulfnews.com,MH,4280,1
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,MU,144663,233
 gulfnews.com,MU,144663,2774
 kenyastar.com,MU,144663,17
@@ -2005,7 +1908,6 @@ france24.com,PE,255247,466
 dailytelegraph.com.au,PE,255247,161
 rt.com,PE,255247,103
 kenyastar.com,PE,255247,28
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 gulfnews.com,HQ,375,1
 france24.com,HQ,375,1
 japantimes.co.jp,HQ,375,3
@@ -2021,7 +1923,6 @@ japantimes.co.jp,LS,5461,3
 rt.com,LS,5461,4
 thejakartapost.com,LS,5461,1
 timesofisrael.com,LS,5461,2
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,MZ,101496,192
 theguardian.com,MZ,101496,157
 kenyastar.com,MZ,101496,115
@@ -2034,7 +1935,6 @@ thejakartapost.com,MZ,101496,29
 rt.com,MZ,101496,9
 japantimes.co.jp,MZ,101496,49
 timesofisrael.com,MZ,101496,5
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 dailytelegraph.com.au,LG,90849,38
 washingtonpost.com,LG,90849,125
 japantimes.co.jp,LG,90849,38
@@ -2047,7 +1947,6 @@ gulfnews.com,LG,90849,71
 timesofisrael.com,LG,90849,49
 thehindu.com,LG,90849,27
 kenyastar.com,LG,90849,6
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 theguardian.com,DO,17168,25
 washingtonpost.com,DO,17168,37
 dailytelegraph.com.au,DO,17168,4
@@ -2082,7 +1981,6 @@ chinadaily.com.cn,QA,454165,219
 theguardian.com,QA,454165,641
 dailytelegraph.com.au,QA,454165,99
 japantimes.co.jp,QA,454165,227
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 theguardian.com,TH,762752,1646
 timesofisrael.com,TH,762752,157
 thejakartapost.com,TH,762752,2132
@@ -2095,7 +1993,6 @@ chinadaily.com.cn,TH,762752,886
 rt.com,TH,762752,192
 kenyastar.com,TH,762752,96
 france24.com,TH,762752,1205
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 theguardian.com,EG,1305465,2568
 washingtonpost.com,EG,1305465,8931
 timesofisrael.com,EG,1305465,5546
@@ -2111,7 +2008,6 @@ kenyastar.com,EG,1305465,216
 dailytelegraph.com.au,SH,1094,19
 france24.com,SH,1094,2
 washingtonpost.com,SH,1094,1
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 france24.com,CS,81145,110
 japantimes.co.jp,CS,81145,31
 washingtonpost.com,CS,81145,179
@@ -2124,11 +2020,9 @@ chinadaily.com.cn,CS,81145,10
 kenyastar.com,CS,81145,7
 thehindu.com,CS,81145,7
 thejakartapost.com,CS,81145,5
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 france24.com,MF,727,8
 japantimes.co.jp,MF,727,5
 gulfnews.com,MF,727,1
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 theguardian.com,GY,172683,54
 washingtonpost.com,GY,172683,146
 japantimes.co.jp,GY,172683,11
@@ -2139,7 +2033,6 @@ gulfnews.com,GY,172683,9
 rt.com,GY,172683,5
 thehindu.com,GY,172683,9
 timesofisrael.com,GY,172683,5
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 thehindu.com,FP,7546,3
 japantimes.co.jp,FP,7546,8
 washingtonpost.com,FP,7546,42
@@ -2149,7 +2042,6 @@ chinadaily.com.cn,FP,7546,6
 theguardian.com,FP,7546,31
 gulfnews.com,FP,7546,2
 france24.com,FP,7546,4
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 thehindu.com,CE,627960,6997
 kenyastar.com,CE,627960,60
 washingtonpost.com,CE,627960,640
@@ -2162,13 +2054,11 @@ japantimes.co.jp,CE,627960,138
 chinadaily.com.cn,CE,627960,231
 rt.com,CE,627960,39
 timesofisrael.com,CE,627960,27
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,VC,15258,26
 thehindu.com,VC,15258,8
 chinadaily.com.cn,VC,15258,1
 gulfnews.com,VC,15258,2
 theguardian.com,VC,15258,1
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 gulfnews.com,RN,2509,7
 chinadaily.com.cn,RN,2509,2
 thehindu.com,RN,2509,1
@@ -2199,7 +2089,6 @@ japantimes.co.jp,TX,79110,46
 theguardian.com,TX,79110,50
 chinadaily.com.cn,TX,79110,34
 kenyastar.com,TX,79110,7
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 theguardian.com,CB,307824,559
 gulfnews.com,CB,307824,298
 washingtonpost.com,CB,307824,1169
@@ -2224,7 +2113,6 @@ chinadaily.com.cn,NZ,901577,518
 thejakartapost.com,NZ,901577,349
 rt.com,NZ,901577,191
 timesofisrael.com,NZ,901577,166
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 gulfnews.com,BT,64534,64
 thehindu.com,BT,64534,471
 theguardian.com,BT,64534,79
@@ -2236,7 +2124,6 @@ chinadaily.com.cn,BT,64534,31
 france24.com,BT,64534,26
 dailytelegraph.com.au,BT,64534,14
 rt.com,BT,64534,3
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 timesofisrael.com,HU,301139,1095
 chinadaily.com.cn,HU,301139,182
 washingtonpost.com,HU,301139,1781
@@ -2273,7 +2160,6 @@ chinadaily.com.cn,YM,640973,354
 theguardian.com,YM,640973,1365
 timesofisrael.com,YM,640973,1255
 kenyastar.com,YM,640973,174
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 kenyastar.com,KE,1082267,13129
 theguardian.com,KE,1082267,2000
 gulfnews.com,KE,1082267,1377
@@ -2286,7 +2172,6 @@ japantimes.co.jp,KE,1082267,506
 thejakartapost.com,KE,1082267,203
 dailytelegraph.com.au,KE,1082267,387
 rt.com,KE,1082267,133
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,CY,199517,625
 rt.com,CY,199517,67
 japantimes.co.jp,CY,199517,50
@@ -2311,7 +2196,6 @@ rt.com,SI,55544,28
 thejakartapost.com,SI,55544,28
 japantimes.co.jp,SI,55544,57
 kenyastar.com,SI,55544,8
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 thejakartapost.com,ML,135277,95
 japantimes.co.jp,ML,135277,212
 france24.com,ML,135277,847
@@ -2324,7 +2208,6 @@ kenyastar.com,ML,135277,40
 gulfnews.com,ML,135277,475
 rt.com,ML,135277,81
 chinadaily.com.cn,ML,135277,145
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,EZ,216133,698
 theguardian.com,EZ,216133,407
 dailytelegraph.com.au,EZ,216133,102
@@ -2345,7 +2228,6 @@ dailytelegraph.com.au,GP,4087,3
 gulfnews.com,GP,4087,7
 thehindu.com,GP,4087,1
 thejakartapost.com,GP,4087,3
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 kenyastar.com,UG,567017,1228
 dailytelegraph.com.au,UG,567017,109
 france24.com,UG,567017,467
@@ -2358,7 +2240,6 @@ rt.com,UG,567017,48
 thehindu.com,UG,567017,129
 thejakartapost.com,UG,567017,50
 chinadaily.com.cn,UG,567017,82
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,GA,169894,457
 japantimes.co.jp,GA,169894,87
 theguardian.com,GA,169894,367
@@ -2371,7 +2252,6 @@ kenyastar.com,GA,169894,23
 rt.com,GA,169894,18
 timesofisrael.com,GA,169894,33
 thejakartapost.com,GA,169894,9
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 theguardian.com,AS,4644073,55572
 dailytelegraph.com.au,AS,4644073,96532
 japantimes.co.jp,AS,4644073,2716
@@ -2418,7 +2298,6 @@ thehindu.com,WZ,47943,8
 japantimes.co.jp,WZ,47943,1
 rt.com,WZ,47943,5
 france24.com,WZ,47943,2
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 gulfnews.com,AC,30773,20
 dailytelegraph.com.au,AC,30773,34
 france24.com,AC,30773,10
@@ -2427,7 +2306,6 @@ washingtonpost.com,AC,30773,61
 thehindu.com,AC,30773,4
 thejakartapost.com,AC,30773,2
 japantimes.co.jp,AC,30773,4
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,AN,3156,27
 gulfnews.com,AN,3156,19
 france24.com,AN,3156,10
@@ -2458,7 +2336,6 @@ timesofisrael.com,NI,4335693,275
 kenyastar.com,NI,4335693,296
 gulfnews.com,NI,4335693,2438
 rt.com,NI,4335693,258
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 gulfnews.com,KG,125448,118
 theguardian.com,KG,125448,109
 chinadaily.com.cn,KG,125448,269
@@ -2471,7 +2348,6 @@ dailytelegraph.com.au,KG,125448,41
 thejakartapost.com,KG,125448,11
 japantimes.co.jp,KG,125448,39
 kenyastar.com,KG,125448,5
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 thejakartapost.com,TT,20420,238
 chinadaily.com.cn,TT,20420,107
 washingtonpost.com,TT,20420,47
@@ -2483,7 +2359,6 @@ gulfnews.com,TT,20420,13
 rt.com,TT,20420,6
 thehindu.com,TT,20420,4
 timesofisrael.com,TT,20420,2
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 rt.com,BO,262184,397
 japantimes.co.jp,BO,262184,99
 france24.com,BO,262184,221
@@ -2520,7 +2395,6 @@ gulfnews.com,SY,3452009,13927
 thejakartapost.com,SY,3452009,2593
 rt.com,SY,3452009,9115
 chinadaily.com.cn,SY,3452009,1654
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 gulfnews.com,ER,68819,111
 theguardian.com,ER,68819,580
 washingtonpost.com,ER,68819,245
@@ -2533,7 +2407,6 @@ rt.com,ER,68819,40
 japantimes.co.jp,ER,68819,41
 dailytelegraph.com.au,ER,68819,12
 chinadaily.com.cn,ER,68819,1
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 gulfnews.com,CO,319338,713
 theguardian.com,CO,319338,1024
 chinadaily.com.cn,CO,319338,223
@@ -2550,7 +2423,6 @@ dailytelegraph.com.au,IM,2014,15
 theguardian.com,IM,2014,5
 thejakartapost.com,IM,2014,3
 gulfnews.com,IM,2014,3
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,IZ,1890111,13615
 theguardian.com,IZ,1890111,5438
 rt.com,IZ,1890111,3797
@@ -2563,7 +2435,6 @@ kenyastar.com,IZ,1890111,332
 thejakartapost.com,IZ,1890111,1114
 thehindu.com,IZ,1890111,2297
 chinadaily.com.cn,IZ,1890111,759
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 chinadaily.com.cn,UY,46870,58
 theguardian.com,UY,46870,139
 timesofisrael.com,UY,46870,61
@@ -2576,7 +2447,6 @@ france24.com,UY,46870,87
 dailytelegraph.com.au,UY,46870,11
 thehindu.com,UY,46870,26
 rt.com,UY,46870,27
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 gulfnews.com,OC,15392,31
 washingtonpost.com,OC,15392,36
 thehindu.com,OC,15392,67
@@ -2588,7 +2458,6 @@ chinadaily.com.cn,OC,15392,5
 theguardian.com,OC,15392,8
 japantimes.co.jp,OC,15392,4
 timesofisrael.com,OC,15392,1
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,NG,120271,333
 theguardian.com,NG,120271,268
 gulfnews.com,NG,120271,222
@@ -2601,7 +2470,6 @@ thehindu.com,NG,120271,37
 chinadaily.com.cn,NG,120271,15
 dailytelegraph.com.au,NG,120271,30
 kenyastar.com,NG,120271,9
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,JE,188996,743
 dailytelegraph.com.au,JE,188996,90
 chinadaily.com.cn,JE,188996,21
@@ -2614,7 +2482,6 @@ kenyastar.com,JE,188996,8
 rt.com,JE,188996,44
 japantimes.co.jp,JE,188996,28
 thejakartapost.com,JE,188996,4
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 france24.com,AR,251922,730
 timesofisrael.com,AR,251922,497
 rt.com,AR,251922,244
@@ -2639,7 +2506,6 @@ japantimes.co.jp,CF,121180,99
 dailytelegraph.com.au,CF,121180,100
 timesofisrael.com,CF,121180,22
 rt.com,CF,121180,26
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,RM,18152,77
 rt.com,RM,18152,5
 france24.com,RM,18152,30
@@ -2652,7 +2518,6 @@ timesofisrael.com,RM,18152,9
 kenyastar.com,RM,18152,4
 thejakartapost.com,RM,18152,7
 washingtonpost.com,TK,1163,4
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 france24.com,LU,85835,261
 theguardian.com,LU,85835,431
 washingtonpost.com,LU,85835,162
@@ -2679,7 +2544,6 @@ france24.com,SZ,685031,1775
 dailytelegraph.com.au,SZ,685031,469
 chinadaily.com.cn,SZ,685031,709
 japantimes.co.jp,SZ,685031,648
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 timesofisrael.com,IS,3522487,111986
 japantimes.co.jp,IS,3522487,2335
 gulfnews.com,IS,3522487,10591
@@ -2704,7 +2568,6 @@ chinadaily.com.cn,MP,43659,33
 timesofisrael.com,MP,43659,7
 japantimes.co.jp,MP,43659,7
 kenyastar.com,MP,43659,16
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 chinadaily.com.cn,AF,1766832,776
 washingtonpost.com,AF,1766832,10990
 timesofisrael.com,AF,1766832,963
@@ -2729,7 +2592,6 @@ timesofisrael.com,JA,1717682,579
 theguardian.com,JA,1717682,3591
 rt.com,JA,1717682,1957
 kenyastar.com,JA,1717682,380
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,BB,86287,55
 theguardian.com,BB,86287,91
 timesofisrael.com,BB,86287,15
@@ -2747,7 +2609,6 @@ japantimes.co.jp,CQ,1424,1
 rt.com,CQ,1424,4
 france24.com,CQ,1424,1
 theguardian.com,CQ,1424,1
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 rt.com,PP,84482,40
 dailytelegraph.com.au,PP,84482,424
 washingtonpost.com,PP,84482,91
@@ -2760,7 +2621,6 @@ japantimes.co.jp,PP,84482,17
 thehindu.com,PP,84482,48
 timesofisrael.com,PP,84482,7
 kenyastar.com,PP,84482,8
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 thehindu.com,CD,136753,53
 rt.com,CD,136753,30
 france24.com,CD,136753,285
@@ -2773,7 +2633,6 @@ japantimes.co.jp,CD,136753,112
 thejakartapost.com,CD,136753,38
 dailytelegraph.com.au,CD,136753,72
 chinadaily.com.cn,CD,136753,19
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 washingtonpost.com,AO,120988,238
 france24.com,AO,120988,181
 gulfnews.com,AO,120988,131
@@ -2786,7 +2645,6 @@ japantimes.co.jp,AO,120988,63
 dailytelegraph.com.au,AO,120988,25
 thehindu.com,AO,120988,31
 timesofisrael.com,AO,120988,8
-MentionSourceName,ActionGeo_CountryCode,Number_events_country,Number_events_source
 gulfnews.com,ST,25057,8
 washingtonpost.com,ST,25057,3
 thehindu.com,ST,25057,2

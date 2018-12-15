@@ -54,8 +54,8 @@ def get_media_cov(df_mentions, df_events):
 
 def Goldstein_mediaCov(df_mentions, df_events):
     media_coverage = get_media_cov(df_mentions, df_events)
-    df = media_coverage.join(df_events, 'GLOBALEVENTID').select(df_events.GoldsteinScale, 'Number Mentions')
-    return df.groupBy('GoldsteinScale').agg(avg('Number mentions').alias('Average media coverage per event'))
+    df = media_coverage.join(df_events, 'GLOBALEVENTID').select(df_events.GoldsteinScale, 'count')
+    return df.groupBy('GoldsteinScale').agg(avg('count').alias('Average media coverage per event'))
 
 
 def get_activity_byGoldstein(df_events):
