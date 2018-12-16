@@ -32,11 +32,14 @@ def main():
     events = spark.read.parquet("events.parquet")
     print("events to parquet done")
 
-    saveDataFrame(
-        Goldstein_mediaCov(mentions.select('GLOBALEVENTID'), events.select('GLOBALEVENTID', 'GoldsteinScale')),
-        'Goldstein_mediaCov')
+    saveDataFrame(more(mentions, events), 'get_activity_byGoldstein')
 
+    print(mentions.count())
     print("<3")
+
+
+def more(m, e):
+    return get_media_cov(m, e).groupBy('GoldsteinScale').sum('count')
 
 
 def get_media_cov(df_mentions, df_events):
