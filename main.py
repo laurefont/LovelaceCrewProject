@@ -278,8 +278,6 @@ def get_media_cov(df_mentions, df_events):
     return ret.join(goldstein, 'GLOBALEVENTID')
 
 
-
-
 ########
 # Time #
 ########
